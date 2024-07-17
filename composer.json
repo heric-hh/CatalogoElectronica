@@ -1,0 +1,19 @@
+{
+    "name": "hereric/catalogo",
+    "description": "Catalogo de productos en linea",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "MVC\\": "./router",
+            "Controllers\\": "./controllers",
+            "Models\\": ".models"
+        }
+    },
+    "authors": [
+        {
+            "name": "heric-hh",
+            "email": "erhh.015@gmail.com"
+        }
+    ],
+    "require": {}
+}
