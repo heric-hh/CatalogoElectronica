@@ -1,0 +1,10 @@
+/*Normalizacion*/
+@import "base/global.css";
+@import "base/normalize.css";
+
+/*Utilidades*/
+@import "utils/variables.css";
+
+/*Componentes*/
+@import "components/buttons.css";
+@import "components/forms.css";

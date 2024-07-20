@@ -1,0 +1,18 @@
+.input {
+  width: 100%;
+  padding: var(--spacing-small);
+  margin-bottom: var(--spacing-medium);
+  padding-left: 1rem;
+  font-size: var(--font-size-base);
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+  border: 1px solid #ccc;
+  border-radius: var(--border-radius-inputs);
+}
+
+.label {
+  font-size: var(--font-size-base);
+  margin-bottom: var(--spacing-small);
+  display: block;
+}
+

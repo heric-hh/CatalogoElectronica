@@ -30,4 +30,13 @@ class Router {
       echo 'Pagina no encontrada';
     }
   }
+
+  public function render(string $view, array $data = []) : void {
+    foreach($data as $key => $value) {
+      $$key = $value;
+    }
+    ob_start();
+    include __DIR__ . "/../views/layout/layout.html.php";
+    include __DIR__ . "/../views/pages/$view.html.php";
+  }
 }

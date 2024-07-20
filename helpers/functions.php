@@ -3,7 +3,7 @@
 function debug(mixed $var) : never {
   echo "<pre>";
   var_dump($var);
-echo "</pre>";
+  echo "</pre>";
   exit;
 }
 

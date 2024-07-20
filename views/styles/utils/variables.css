@@ -1,0 +1,52 @@
+:root {
+  /*Colores*/
+  --color-background: #010101;
+  --color-secondary: #B2D0CE;
+  --color-primary: #A51B8A;
+  --color-primary-text: #FAFAFE;
+  --color-secondary-text: #010101;
+
+  /*Tipografía*/
+  --font-family: "Ubuntu", sans-serif;
+  --font-size-base: 16px;
+  --font-size-large: 24px;
+  --font-size-small: 12px;
+
+  /*Espaciado*/
+  --spacing-small: 8px;
+  --spacing-medium: 16px;
+  --spacing-large: 32px;
+  
+  /*Bordes*/
+  --border-radius-buttons: 4px;
+  --border-radius-inputs: 16px;
+}
+
+/*Fuentes*/
+@font-face {
+  font-family: "Ubuntu";
+  src: url("../../assets/fonts/Ubuntu-Bold.ttf");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Ubuntu";
+  src: url("../../assets/fonts/Ubuntu-Medium.ttf");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Ubuntu";
+  src: url("../../assets/fonts/Ubuntu-Regular.ttf");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Ubuntu";
+  src: url("../../assets/fonts/Ubuntu-Light.ttf");
+  font-weight: 300;
+  font-style: normal;
+}

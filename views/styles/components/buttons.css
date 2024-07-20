@@ -1,0 +1,31 @@
+.button {
+  display: inline-block;
+  padding: var(--spacing-small) var(--spacing-medium);
+  font-size: var(--font-size-base);
+  font-family: "Ubuntu";
+  font-weight: 500;
+  text-decoration: none;
+  text-align: center;
+  border: none;
+  border-radius: var(--border-radius-buttons);
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.button-primary {
+  background-color: var(--color-primary);
+  color: var(--color-primary-text);
+}
+
+.button-primary:hover {
+  background-color: darken(var(--color-primary));
+}
+
+.button-secondary {
+  background-color: var(--color-secondary);
+  color: var(--color-secondary-text);
+}
+
+.button-secondary:hover {
+  background-color: darken(var(--color-secondary), 10%);
+}
