@@ -1,1 +1,4 @@
-<h2>index</h2>
+<?php 
+  include __DIR__ . "/../layout/header.html.php";
+?>
+
