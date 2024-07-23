@@ -3,13 +3,14 @@
   --color-background: #010101;
   --color-secondary: #B2D0CE;
   --color-primary: #A51B8A;
-  --color-primary-text: #FAFAFE;
+  --color-primary-text: #f0f0f0;
   --color-secondary-text: #010101;
 
   /*Tipografía*/
   --font-family: "Ubuntu", sans-serif;
   --font-size-base: 16px;
   --font-size-large: 24px;
+  --font-size-medium: 18px;
   --font-size-small: 12px;
 
   /*Espaciado*/
@@ -66,6 +67,6 @@
   hsl(16deg 68% 58%) 90%,
   hsl(26deg 67% 57%) 100%
 );
-    padding-top: 1px;
-    border-radius: 60px;
+  padding-top: 1px;
+  border-radius: 60px;
 }

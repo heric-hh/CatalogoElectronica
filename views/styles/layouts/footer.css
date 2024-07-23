@@ -1,17 +1,30 @@
 .footer {
   display: flex;
   flex-direction: column;
-  gap: 3rem;
   background-color: var(--color-background);
   border-top-left-radius: 60px;
   border-top-right-radius: 60px;
-  padding: var(--spacing-large);
+  padding: 4rem 2rem;
+  font-size: var(--font-size-medium);
+}
+
+.footer__title-wrapper {
+  margin-bottom: var(--spacing-medium);
 }
 
 .footer__form-wrapper {
-  padding: 1rem 2rem;
-  
+  margin-bottom: var(--spacing-large);
   input[type="submit"] {
     width: 100%;
+  }
+}
+
+.footer__store, .footer__social-media {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: var(--spacing-large);
+
+  a {
+    margin: var(--spacing-small) 0;
   }
 }

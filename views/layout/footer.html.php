@@ -5,7 +5,7 @@
       <p>¡Contáctanos!</p>
     </div>
     <form class="footer__form-wrapper">
-      <input type="text" class="input">
+      <textarea class="textarea"></textarea>
       <input type="submit" class="button button-primary" value="Enviar Mensaje">
     </form>
     <div class="footer__store">
