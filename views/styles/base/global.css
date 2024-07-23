@@ -8,3 +8,8 @@ body {
 p {
   margin-bottom: var(--spacing-medium);
 }
+
+a {
+  text-decoration: none;
+  color: var(--color-text);
+}
