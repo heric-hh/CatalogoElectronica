@@ -16,3 +16,12 @@ a {
   color: var(--color-text);
   transition: color 0.3s;
 }
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+ul {
+  list-style: none;
+}
