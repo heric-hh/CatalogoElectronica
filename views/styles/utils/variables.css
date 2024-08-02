@@ -1,4 +1,5 @@
 :root {
+  font-size: 16px;
   /*Colores*/
   --color-background: #010101;
   --color-secondary: #B2D0CE;
@@ -8,15 +9,15 @@
   --navbar-background-color: #212121;
   /*Tipografía*/
   --font-family: "Ubuntu", sans-serif;
-  --font-size-base: 16px;
-  --font-size-large: 24px;
-  --font-size-medium: 18px;
-  --font-size-small: 12px;
-
+  --font-size-base: 1rem;
+  --font-size-large: 1.5rem;
+  --font-size-medium: 1.25rem;
+  --font-size-small: 0.75rem;
   /*Espaciado*/
-  --spacing-small: 8px;
-  --spacing-medium: 16px;
-  --spacing-large: 32px;
+  --spacing-sm: 0.75rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 4rem;
   
   /*Bordes*/
   --border-radius-buttons: 4px;

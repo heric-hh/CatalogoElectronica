@@ -14,18 +14,18 @@ class NavBar extends HTMLElement {
           padding: 0;
         }
         nav {
-          width: 100%;
           background-color: var(--navbar-background-color);
           border-radius: 1rem;
-          padding: var(--spacing-small) var(--spacing-large);
+          padding: var(--spacing-sm) var(--spacing-lg);
           display: flex;
-          justify-content: space-between;
           align-items: center;
-          margin-bottom: var(--spacing-small);
+          margin-bottom: var(--spacing-sm);
+          gap: 2rem;
         }
 
         a {
           text-decoration: none;
+          text-align: center;
           margin: 0;
           padding: 0;
           font-size: var(--font-size-medium);
@@ -39,7 +39,7 @@ class NavBar extends HTMLElement {
         }
 
         div.button-wrapper {
-          padding: var(--spacing-small);
+          padding: var(--spacing-sm);
           border: 1px solid var(--color-primary);
           border-radius: var(--border-radius-buttons);
           display: flex;
@@ -75,7 +75,7 @@ class NavBar extends HTMLElement {
         .submenu {
           display: flex;
           flex-direction: column;
-          gap: var(--spacing-small);
+          gap: var(--spacing-sm);
           transform: translateY(-20px);
           transition: transform 0.3s ease;
         }
@@ -84,7 +84,7 @@ class NavBar extends HTMLElement {
         }
         .submenu-link {
           font-weight: 300;
-          padding: var(--spacing-small) var(--spacing-large);
+          padding: var(--spacing-sm) var(--spacing-lg);
         }
 
         .submenu-link:hover {

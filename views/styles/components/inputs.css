@@ -1,0 +1,7 @@
+textarea {
+  background: var(--color-background);
+  border-radius: var(--border-radius-inputs);
+  color: var(--color-primary-text);
+  font-weight: 300;
+  padding: var(--spacing-md) var(--spacing-sm);
+}
