@@ -10,6 +10,10 @@ class NavBar extends HTMLElement {
     this.shadowRoot.innerHTML = `
       <style>
         /* Globales */
+        :host {
+          display: block;
+          position: relative;
+        }
         h1 {
           margin: 0;
           padding: 0;
@@ -22,6 +26,8 @@ class NavBar extends HTMLElement {
           display: flex;
           margin-bottom: var(--spacing-sm);
           gap: 3rem;
+          justify-content: space-between;
+          align-items: center;
         }
 
         a {
@@ -36,6 +42,8 @@ class NavBar extends HTMLElement {
 
         ul {
           list-style: none;
+          padding: 0;
+          margin: 0;
         }
 
         input {
@@ -44,6 +52,7 @@ class NavBar extends HTMLElement {
           color: var(--color-primary-text);
           font-weight: 300;
           padding: var(--spacing-sm) var(--spacing-md);
+          border: 1px solid var(--color-primary-text);
         }
 
         .navlink-lg {
@@ -51,31 +60,29 @@ class NavBar extends HTMLElement {
         }
         
         /*Media querys*/
-        @media (width > 1200px) {
+        @media (min-width: 1200px) {
           .navlink-lg {
             display: flex;
             gap: 2rem;
-            margin: 0;
-            padding: 0;
             align-items: center;
-            a {
-              font-weight: 300;
-              font-size: var(--font-size-sm);
-            }
-          }  
+          }
+          .navlink-lg a {
+            font-weight: 300;
+            font-size: var(--font-size-sm);
+          }
         }
 
         /* Boton para abrir menu */
-        div.button-wrapper {
+        .button-wrapper {
           padding: 5px;
           border-radius: var(--border-radius-buttons);
           cursor: pointer;
+        }
 
-          button {
-            border: none;
-            cursor: pointer;
-            background-color: transparent;
-          }
+        .button-wrapper button {
+          border: none;
+          cursor: pointer;
+          background-color: transparent;
         }
 
         .button-wrapper.active {
@@ -84,10 +91,12 @@ class NavBar extends HTMLElement {
         
         /* Barra de Navegación para mobile*/
         .submenu-wrapper {
-          position: fixed;
-          width: 65%;
-          display: flex;
-          justify-content: center;
+          position: absolute;
+          top: 100%;
+          left: 0;
+          right: 0;
+          background-color: var(--navbar-background-color);
+          border-radius: 1rem;
           z-index: 2;
           opacity: 0;
           visibility: hidden;
@@ -101,13 +110,10 @@ class NavBar extends HTMLElement {
           display: flex;
           flex-direction: column;
           gap: var(--spacing-sm);
-          transform: translateY(-20px);
-          transition: transform 0.3s ease;
-        }
-        .submenu-wrapper.active .submenu {
-          transform: translateY(0);
+          padding: var(--spacing-sm) var(--spacing-md);
         }
         .submenu-link {
+          display: block;
           font-weight: 300;
           padding: var(--spacing-sm) var(--spacing-lg);
         }
@@ -116,6 +122,10 @@ class NavBar extends HTMLElement {
           color: silver;
         }
 
+        .submenu-input {
+          width: 100%;
+          box-sizing: border-box;
+        }
       </style>
 
       <nav>
@@ -133,14 +143,14 @@ class NavBar extends HTMLElement {
           </button>
         </div>
       </nav>
-      <nav class="submenu-wrapper">
+      <div class="submenu-wrapper">
         <div class="submenu">
-          <input class="submenu-input input-search" type="text" placeholder="¿Qué estás buscando?"/> 
           <a class="submenu-link" href="#">Productos</a>
           <a href="#" class="submenu-link">Contacto</a>
           <a href="#" class="submenu-link">Nosotros</a>
+          <input class="submenu-input input-search" type="text" placeholder="¿Qué estás buscando?"/> 
         </div>
-      </nav>
+      </div>
     `
   }
 
@@ -149,7 +159,7 @@ class NavBar extends HTMLElement {
     const subMenu = this.shadowRoot.querySelector(".submenu-wrapper")
 
     menuButton.addEventListener("click", (e) => {
-      e.stopPropagation() // Previene que el clic en el botón cierre inmediatamente el menú
+      e.stopPropagation()
       this.toggleMenu()
     })
 
@@ -157,19 +167,31 @@ class NavBar extends HTMLElement {
       e.stopPropagation()
     })
 
-    // Añadir evento de clic al documento
     document.addEventListener("click", (e) => {
-      if(!this.contains(e.target) && subMenu.classList.contains("active")) {
+      if (!this.contains(e.target) && subMenu.classList.contains("active")) {
         this.toggleMenu()
       }
     })
+
+    window.addEventListener('resize', () => {
+      this.adjustSubmenuPosition()
+    })
+  }
+    
+  toggleMenu() {
+    const menuButton = this.shadowRoot.querySelector(".button-wrapper")
+    const subMenu = this.shadowRoot.querySelector(".submenu-wrapper")
+    subMenu.classList.toggle("active")
+    menuButton.classList.toggle("active")
+    this.adjustSubmenuPosition()
   }
 
-    toggleMenu() {
-      const menuButton = this.shadowRoot.querySelector(".button-wrapper")
-      const subMenu = this.shadowRoot.querySelector(".submenu-wrapper")
-      subMenu.classList.toggle("active")
-      menuButton.classList.toggle("active")
-    }
+  adjustSubmenuPosition() {
+    const submenu = this.shadowRoot.querySelector('.submenu-wrapper')
+    
+    submenu.style.width = `${this.offsetWidth}px`
+    submenu.style.left = '0px'
+  }
 }
+
 customElements.define("nav-bar", NavBar)
