@@ -9,18 +9,19 @@ class NavBar extends HTMLElement {
   render() {
     this.shadowRoot.innerHTML = `
       <style>
+        /* Globales */
         h1 {
           margin: 0;
           padding: 0;
+          line-height: 2rem;
         }
         nav {
           background-color: var(--navbar-background-color);
           border-radius: 1rem;
-          padding: var(--spacing-sm) var(--spacing-lg);
+          padding: var(--spacing-sm) var(--spacing-md);
           display: flex;
-          align-items: center;
           margin-bottom: var(--spacing-sm);
-          gap: 2rem;
+          gap: 3rem;
         }
 
         a {
@@ -35,16 +36,39 @@ class NavBar extends HTMLElement {
 
         ul {
           list-style: none;
-          display: none;
         }
 
+        input {
+          border-radius: var(--border-radius-inputs);
+          background: var(--navbar-background-color);
+          color: var(--color-primary-text);
+          font-weight: 300;
+          padding: var(--spacing-sm) var(--spacing-md);
+        }
+
+        .navlink-lg {
+          display: none;
+        }
+        
+        /*Media querys*/
+        @media (width > 1200px) {
+          .navlink-lg {
+            display: flex;
+            gap: 2rem;
+            margin: 0;
+            padding: 0;
+            align-items: center;
+            a {
+              font-weight: 300;
+              font-size: var(--font-size-sm);
+            }
+          }  
+        }
+
+        /* Boton para abrir menu */
         div.button-wrapper {
-          padding: var(--spacing-sm);
-          border: 1px solid var(--color-primary);
+          padding: 5px;
           border-radius: var(--border-radius-buttons);
-          display: flex;
-          align-items: center;
-          justify-content: center;
           cursor: pointer;
 
           button {
@@ -57,10 +81,11 @@ class NavBar extends HTMLElement {
         .button-wrapper.active {
           background-color: var(--color-primary);
         }
-
+        
+        /* Barra de Navegación para mobile*/
         .submenu-wrapper {
           position: fixed;
-          width: 63%;
+          width: 65%;
           display: flex;
           justify-content: center;
           z-index: 2;
@@ -110,6 +135,7 @@ class NavBar extends HTMLElement {
       </nav>
       <nav class="submenu-wrapper">
         <div class="submenu">
+          <input class="submenu-input input-search" type="text" placeholder="¿Qué estás buscando?"/> 
           <a class="submenu-link" href="#">Productos</a>
           <a href="#" class="submenu-link">Contacto</a>
           <a href="#" class="submenu-link">Nosotros</a>
@@ -127,16 +153,18 @@ class NavBar extends HTMLElement {
       this.toggleMenu()
     })
 
+    subMenu.addEventListener("click", (e) => {
+      e.stopPropagation()
+    })
+
     // Añadir evento de clic al documento
     document.addEventListener("click", (e) => {
-      const isClickInsideMenu = subMenu.contains(e.target)
-      const isClickOnButton = menuButton.contains(e.target)
-
-      if (!isClickInsideMenu && !isClickOnButton && subMenu.classList.contains("active")) {
+      if(!this.contains(e.target) && subMenu.classList.contains("active")) {
         this.toggleMenu()
       }
-    })}
-    
+    })
+  }
+
     toggleMenu() {
       const menuButton = this.shadowRoot.querySelector(".button-wrapper")
       const subMenu = this.shadowRoot.querySelector(".submenu-wrapper")

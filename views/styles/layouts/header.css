@@ -2,5 +2,5 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: var(--spacing-small);
+  margin-top: var(--spacing-sm);
 }
