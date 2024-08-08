@@ -7,6 +7,7 @@
   --color-primary-text: #f0f0f0;
   --color-secondary-text: #010101;
   --navbar-background-color: #212121;
+  --color-title: #A1A1A1;
   /*Tipografía*/
   --font-family: "Ubuntu", sans-serif;
   --font-size-base: 1rem;
@@ -22,6 +23,7 @@
   /*Bordes*/
   --border-radius-buttons: 4px;
   --border-radius-inputs: 16px;
+  --border-radius-background-img: 2rem;
 }
 
 /*Fuentes*/

@@ -5,9 +5,13 @@
 /*Utilidades*/
 @import "utils/variables.css";
 
+/*Pages*/
+@import "pages/index.css";
+
 /*Componentes*/
 @import "components/buttons.css";
 @import "components/inputs.css";
+
 /*Layouts*/
 @import "layouts/header.css";
 @import "layouts/footer.css";
