@@ -1,6 +1,3 @@
-<?php 
-  include __DIR__ . "/../layout/header.html.php";
-?>
 <section id="hero">
   <div class="hero__container">
     <div class="hero-section">
@@ -9,9 +6,7 @@
       <p>Calidad, innovación y precios competitivos en un sólo lugar.</p>
     </div>
     <div class="hero-button">
-      <button class="button button-secondary>
-        <a href="/productos">Explorar Tienda</a>
-      </button>
+      <a href="/categorias" class="button button-secondary">Explorar Tienda</a>
     </div>
     <div class="hero-speaker-container">
       <img src="./views/assets/img/bocina.png" alt="bocina">
@@ -36,7 +31,7 @@
   </div>
 
   <div class="pn_button-wrapper">
-    <button class="pn_button button button-secondary">Explora Más</button>
+    <a href="/categorias" class="pn_button button button-secondary">Explora Más</a>
   </div>
 </section>
 

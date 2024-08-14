@@ -37,6 +37,7 @@ class Router {
     }
     ob_start();
     include __DIR__ . "/../views/layout/layout.html.php";
+    include __DIR__ . "/../views/layout/header.html.php";
     include __DIR__ . "/../views/pages/$view.html.php";
     include __DIR__ . "/../views/layout/footer.html.php";
   }
