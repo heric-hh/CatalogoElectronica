@@ -11,8 +11,10 @@
   /*Tipografía*/
   --font-family: "Ubuntu", sans-serif;
   --font-size-base: 1rem;
+  --font-size-xl: 1.75rem;
   --font-size-large: 1.5rem;
   --font-size-medium: 1.25rem;
+  --font-size-p: 0.9rem;
   --font-size-small: 0.75rem;
   /*Espaciado*/
   --spacing-sm: 0.75rem;
