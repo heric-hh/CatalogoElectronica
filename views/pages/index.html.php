@@ -49,5 +49,46 @@
       no te puedes perder.
     </p>
   </div>
+
+  <!-- Card de producto popular -->
+  <div class="pp__cards-wrapper">
+    <div class="pp__card">
+      <img src="./views/assets/img/gamepadSinFondo.png" alt="gamepad">
+      <span class="product__title">Control Inalámbrico</span>
+      <span class="product-price">$200.00</span>
+      <div class="pp__card-button-wrapper">
+        <a href="#" class="pp__card-button button">Ver Producto</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Card de producto popular -->
+  <div class="pp__cards-wrapper">
+    <div class="pp__card">
+      <img src="./views/assets/img/gamepadSinFondo.png" alt="gamepad">
+      <span class="product__title">Control Inalámbrico</span>
+      <span class="product-price">$200.00</span>
+      <div class="pp__card-button-wrapper">
+        <a href="#" class="pp__card-button button">Ver Producto</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Card de producto popular -->
+  <div class="pp__cards-wrapper">
+    <div class="pp__card">
+      <img src="./views/assets/img/gamepadSinFondo.png" alt="gamepad">
+      <span class="product__title">Control Inalámbrico</span>
+      <span class="product-price">$200.00</span>
+      <div class="pp__card-button-wrapper">
+        <a href="#" class="pp__card-button button">Ver Producto</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="pn_button-wrapper">
+    <button class="pn_button button button-secondary">Explora Más</button>
+  </div>
+  
 </section>
 

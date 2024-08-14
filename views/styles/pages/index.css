@@ -97,7 +97,11 @@
       background-color: var(--color-background);
       position: absolute;
       bottom: 0;
-      left: 26%;
+      left: 31%;
+
+      .pn__card-title {
+        font-weight: 800;
+      }
     }
   }
 
@@ -107,5 +111,48 @@
     top: 0;
     left: 0;
     z-index: 2;
+  }
+}
+
+/*Productos populares*/
+.pp__cards-wrapper {
+  margin-top: var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .pp__card {
+    width: 70%;
+    background-color: var(--color-background-card);
+    border-radius: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: var(--spacing-md) 0;
+    position: relative;
+
+    img {
+      width: 60%;
+    }
+
+    p, span {
+      color: var(--color-background);
+    }
+
+    .product-title {
+      font-weight: 500;
+    }
+
+    .product-price {
+      font-weight: 300;
+    }
+
+    .pp__card-button-wrapper {
+      border: 1px solid var(--color-primary-text);
+      border-radius: var(--border-radius-inputs);
+      background-color: var(--color-background);
+      margin-top: var(--spacing-md);
+    }
   }
 }
