@@ -9,4 +9,10 @@ class PagesController {
       'title' => "Catálogo De Productos"
     ]);
   }
+
+  public static function showNosotros(Router $router) : void {
+    $router->render('nosotros',[
+      'title' => 'Nosotros - Catálogo De Productos'
+    ]);
+  }
 }

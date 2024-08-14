@@ -9,6 +9,7 @@
 @import "pages/index.css";
 @import "pages/categorias.css";
 @import "pages/productos.css";
+@import "pages/nosotros.css";
 
 /*Componentes*/
 @import "components/buttons.css";
