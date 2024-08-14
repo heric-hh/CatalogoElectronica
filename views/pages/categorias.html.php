@@ -12,5 +12,13 @@
         <span>Gaming</span>
       </a>
     </div>
+
+     <!-- Categoria Card -->
+     <div class="categoria-card">
+      <a class="categoria-link" href="">
+        <img src="./views/assets/img/gamepadSinFondo.png" alt="gamepad">
+        <span>Gaming</span>
+      </a>
+    </div>
   </div>
 </section>

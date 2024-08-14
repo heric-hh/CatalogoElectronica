@@ -24,3 +24,26 @@ img {
 ul {
   list-style: none;
 }
+
+select {
+  padding: 0;
+  margin: 0;
+}
+
+
+.title {
+  font-size: var(--font-size-xl);
+}
+
+.subtitle {
+  font-weight: 300;
+  margin: var(--spacing-sm);
+  font-size: var(--font-size-p);
+}
+
+.section {
+  margin: 0 var(--spacing-lg) var(--spacing-lg) var(--spacing-lg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

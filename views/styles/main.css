@@ -8,6 +8,7 @@
 /*Pages*/
 @import "pages/index.css";
 @import "pages/categorias.css";
+@import "pages/productos.css";
 
 /*Componentes*/
 @import "components/buttons.css";

@@ -223,7 +223,7 @@ class NavBar extends HTMLElement {
       </nav>
       <div class="submenu-wrapper">
         <div class="submenu">
-          <a class="submenu-link" href="#">Productos</a>
+          <a class="submenu-link" href="/productos">Productos</a>
           <a href="#" class="submenu-link">Contacto</a>
           <a href="#" class="submenu-link">Nosotros</a>
           <input class="submenu-input input-search" type="text" placeholder="¿Qué estás buscando?"/> 
