@@ -1,4 +1,4 @@
-textarea {
+textarea, .input {
   background: var(--color-background);
   border-radius: var(--border-radius-inputs);
   color: var(--color-primary-text);

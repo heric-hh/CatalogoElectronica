@@ -10,6 +10,7 @@
 @import "pages/categorias.css";
 @import "pages/productos.css";
 @import "pages/nosotros.css";
+@import "pages/login.css";
 
 /*Componentes*/
 @import "components/buttons.css";
