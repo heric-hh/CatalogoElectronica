@@ -38,7 +38,7 @@ class LoginController {
     session_start();
     $_SESSION['id'] = $admin->id;
     $_SESSION['usuario'] = $admin->nombre_usuario;
-    $_SESSION['login'] = true; 
+    $_SESSION['login'] = true;
   }
 
   public function logout(): void {

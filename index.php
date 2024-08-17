@@ -6,7 +6,7 @@ use Controllers\PagesController;
 use Controllers\CategoriasController;
 use Controllers\ProductosController;
 use Controllers\LoginController;
-
+use Controllers\AdminController;
 use MVC\Router;
 
 $router = new Router();
@@ -21,5 +21,9 @@ $router->get('/nosotros', [PagesController::class, 'showNosotros']);
 $router->get('/login', [LoginController::class, 'showLogin']);
 $router->post('/login', [LoginController::class, 'procesarLogin']);
 $router->get('/logout', [LoginController::class, 'procesarLogout']);
+
+//Administrador
+$router->get('/admin', [AdminController::class, 'showAdmin']);
+$router->get('/admin/productos', [AdminController::class, 'showProductos']);
 
 $router->checkRoutes();

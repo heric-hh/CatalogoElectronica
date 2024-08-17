@@ -216,8 +216,8 @@ class NavBar extends HTMLElement {
         </ul>
         <div class="button-wrapper">
           <button aria-label="Abrir Menú">
-            <img src="./views/assets/img/burger.svg" alt="menu" class="burger-icon" />
-            <img src="./views/assets/img/search.png" alt="search" id="search-icon" />
+            <img src="/views/assets/img/burger.svg" alt="menu" class="burger-icon" />
+            <img src="/views/assets/img/search.png" alt="search" id="search-icon" />
           </button>
         </div>
       </nav>

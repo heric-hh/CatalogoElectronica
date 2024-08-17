@@ -37,17 +37,23 @@ class Router {
     }
     ob_start();
     if($view === "login") {
-      //Codigo para la vista de login
+      //Codigo para la vista de login y administrador
       include __DIR__ . "/../views/layout/layout.html.php";
       include __DIR__ . "/../views/layout/header.html.php";
       include __DIR__ . "/../views/pages/$view.html.php";  
-    } else {
+    } 
+    if(strpos($view, "admin") !== false) {
+      include __DIR__ . "/../views/layout/layout.html.php";
+      include __DIR__ . "/../views/layout/header.html.php";
+      include __DIR__ . "/../views/pages/$view.html.php"; 
+      include __DIR__ . "/../views/layout/admin_panel.html.php";
+    } 
+    else {
       //Codigo para otras vistas
       include __DIR__ . "/../views/layout/layout.html.php";
       include __DIR__ . "/../views/layout/header.html.php";
       include __DIR__ . "/../views/pages/$view.html.php";
       include __DIR__ . "/../views/layout/footer.html.php";
     }
-  }
-  
+  } 
 }
