@@ -1,15 +1,19 @@
 <?php 
 
-namespace Model;
+namespace Models;
+
+use Database\Database;
+use PDO;
 
 abstract class ActiveRecord {
   protected static ?PDO $db = null;
   protected static array $columnasDb = [];
   protected static string $tabla = "";
   protected static array $errores = [];
-
-  public static function setDb() : void {
-    self::$db = Database::getInstance()->getConecction();
+  
+  public static function getDb() : ?PDO {
+    self::$db = Database::getInstance()->getConnection();
+    return self::$db ?? null;
   }
 
   public static function getErrores() : array {

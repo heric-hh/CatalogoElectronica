@@ -15,5 +15,11 @@ $router->get('/', [PagesController::class, 'showLandingPage']);
 $router->get('/categorias', [CategoriasController::class, 'showIndex']);
 $router->get('/productos', [ProductosController::class, 'showIndex']);
 $router->get('/nosotros', [PagesController::class, 'showNosotros']);
+
+
+//Login
 $router->get('/login', [LoginController::class, 'showLogin']);
+$router->post('/login', [LoginController::class, 'procesarLogin']);
+$router->get('/logout', [LoginController::class, 'procesarLogout']);
+
 $router->checkRoutes();

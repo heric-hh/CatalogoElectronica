@@ -6,7 +6,8 @@
         "psr-4": {
             "MVC\\": "./router",
             "Controllers\\": "./controllers",
-            "Models\\": ".models"
+            "Models\\": "./models",
+            "Database\\": "./helpers"
         }
     },
     "authors": [

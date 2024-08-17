@@ -1,5 +1,10 @@
 <?php 
 
+namespace Database;
+use PDO;
+use PDOException;
+use Exception;
+
 class Database {
   private static ?Database $instancia = null;
   private ?PDO $pdo = null;
@@ -7,8 +12,8 @@ class Database {
   //Configuración de la base de datos
   private string $host = "localhost";
   private string $dbname = "catalogo";
-  private string $username = "root";
-  private string $password = "";
+  private string $username = "admin";
+  private string $password = "admin";
   private string $charset = "utf8mb4";
 
   //Evitar la creación directa de la clase
@@ -23,20 +28,24 @@ class Database {
     try {
       $this->pdo = new PDO($dsn, $this->username, $this->password, $options);
     } catch (PDOException $e) {
-      die("Error en la conexion: " . $e->getMessage());
+      throw new Exception("Error en la conexion: " . $e->getMessage());
     }
   }
 
   //Obtener la instancia única de la clase
   public static function getInstance() : Database {
-    if(self::$instance === null) {
-      self::$instance = new self();
+    if(self::$instancia === null) {
+      self::$instancia = new self();
     }
-    return self::$instance;
+    return self::$instancia;
   }
 
   //Obtener el objeto PDO
-  public function getConecction(): PDO {
+  public function getConnection(): PDO {
     return $this->pdo;
+  }
+
+  public function isConnected() : bool {
+    return $this->pdo !== null;
   }
 }

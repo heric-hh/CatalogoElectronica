@@ -12,6 +12,10 @@ class ComposerStaticInit13db5f7a09094abea887f930c98199b1
             'Models\\' => 7,
             'MVC\\' => 4,
         ),
+        'D' => 
+        array (
+            'Database\\' => 9,
+        ),
         'C' => 
         array (
             'Controllers\\' => 12,
@@ -21,11 +25,15 @@ class ComposerStaticInit13db5f7a09094abea887f930c98199b1
     public static $prefixDirsPsr4 = array (
         'Models\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/.models',
+            0 => __DIR__ . '/../..' . '/models',
         ),
         'MVC\\' => 
         array (
             0 => __DIR__ . '/../..' . '/router',
+        ),
+        'Database\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/helpers',
         ),
         'Controllers\\' => 
         array (
