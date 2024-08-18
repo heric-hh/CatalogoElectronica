@@ -15,6 +15,7 @@
   width: 25%;
   height: 10vh;
   border: 1px solid var(--navbar-background-color);
+  background-color: var(--navbar-background-color);
   /* padding: var(--spacing-lg) 0; */
 }
 
@@ -29,7 +30,7 @@
 }
 
 .admin-panel__link:hover {
-  background-color: var(--navbar-background-color);
+  background-color: var(--color-primary);
 } 
 
 .admin-panel__opt-title {

@@ -33,10 +33,33 @@ abstract class ActiveRecord {
     }
   }
 
-  public static function all() : array {
-    $query = "SELECT * FROM " . static::$tabla;
-    $resultado = self::consultarSQL($query);
-    return $resultado;
+  // public static function all() : array {
+  //   $query = "SELECT * FROM " . static::$tabla;
+  //   $resultado = self::consultarSQL($query);
+  //   return $resultado;
+  // }
+
+  public static function allProductos(int $pagina, int $porPagina) : array {
+    $rango = ($pagina - 1) * $porPagina;
+    $query = "
+      SELECT p.*, c.categoria AS categoria_nombre, m.marca AS marca_nombre FROM " . static::$tabla . " p
+      JOIN categorias c ON p.id_categoria = c.id
+      JOIN marcas m ON p.id_marca = m.id
+      LIMIT :porPagina OFFSET :rango";
+    $db = static::getDb();
+    $stmt = $db->prepare($query);
+    $stmt->bindValue(':porPagina', $porPagina, PDO::PARAM_INT);
+    $stmt->bindValue(':rango', $rango, PDO::PARAM_INT);
+    $stmt->execute();
+    return self::consultarSQL($stmt);
+  }
+
+  public static function count() : int {
+    $query = "SELECT COUNT(*) as total FROM " . static::$tabla;
+    $db = self::getDb();
+    $stmt = $db->query($query);
+    $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $resultado["total"] ?? 0;
   }
 
   public static function get(int $cantidad) : array {
@@ -94,14 +117,25 @@ abstract class ActiveRecord {
     }
   }
 
-  public static function consultarSQL(string $query): array {
-    $resultado = self::$db->query($query);
+  public static function consultarSQL(\PDOStatement $stmt): array {
     $array = [];
-    while ($registro = $resultado->fetch(PDO::FETCH_ASSOC)) {
+    while ($registro = $stmt->fetch(PDO::FETCH_ASSOC)) {
         $array[] = static::crearObjeto($registro);
     }
     return $array;
-  }
+}
+
+
+  // public static function consultarSQL(string $query): array {
+  //   $db = self::getDb();
+  //   $resultado = $db->query($query);
+  //   debug($resultado);
+  //   $array = [];
+  //   while ($registro = $resultado->fetch(PDO::FETCH_ASSOC)) {
+  //     $array[] = static::crearObjeto($registro);
+  //   }
+  //   return $array;
+  // }
 
   protected static function crearObjeto(array $registro): self {
     $objeto = new static;
