@@ -98,3 +98,8 @@
       font-size: 16px;
   }
 }
+
+/*Crear producto*/
+.label {
+  margin: var(--spacing-sm) 0;
+}

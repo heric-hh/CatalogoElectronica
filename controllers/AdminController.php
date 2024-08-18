@@ -35,19 +35,38 @@ class AdminController {
   protected static function sanitize(array $data): array {
     return array_map(function($item) {
       if (is_array($item)) {
-          return $this->sanitize($item); // Recursión para arrays anidados
+        return $this->sanitize($item); // Recursión para arrays anidados
       } elseif (is_object($item)) {
-          // Si es un objeto, recorrer sus propiedades y sanitizarlas
-          foreach ($item as $key => $value) {
-              if (is_string($value)) {
-                  $item->$key = htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
-              }
+        // Si es un objeto, recorrer sus propiedades y sanitizarlas
+        foreach ($item as $key => $value) {
+          if (is_string($value)) {
+            $item->$key = htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
           }
-          return $item;
+        }
+        return $item;
       } else {
           return is_string($item) ? htmlspecialchars($item, ENT_QUOTES, 'UTF-8') : $item;
       }
-  }, $data);
+    }, $data);
+  }
+
+  /**Productos */
+  public static function showCrearProducto(Router $router) : void {
+    // $errores = Producto::getErrores();
+    $router->render('admin_crear_producto', [
+      'title' => 'Crear Producto - Administrador de Productos',
+      'errores' => []
+    ]);
+  }
+
+  public static function crearProducto(Router $router) : void {
+    $producto = new Producto($_POST["producto"]);
+    $errores = $producto->validar();
+    $router->render('admin_crear_producto', [
+      'title' => 'Crear Producto - Admninistrador de Productos',
+      'errores' => $errores
+    ]);
+
   }
 
 }

@@ -22,7 +22,7 @@ class Producto extends ActiveRecord {
   public string $descripcion_corta;
   public string $categoria_nombre;
   public string $marca_nombre;
-  public float $precio;
+  public string $precio;
   public bool $disponible;
 
   public function __construct(array $args = []) {
