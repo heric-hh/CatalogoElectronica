@@ -74,8 +74,9 @@ abstract class ActiveRecord {
   }
 
   public static function find(int $id) : ?self {
+    $db = self::getDb();
     $query = "SELECT * FROM " . static::$tabla . " WHERE id = :id";
-    $stmt = self::$db->prepare($query);
+    $stmt = $db->prepare($query);
     $stmt->bindParam(":id", $id, PDO::PARAM_INT);
     $stmt->execute();
     $registro = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -83,11 +84,12 @@ abstract class ActiveRecord {
   }
 
   public function crear() : void {
+    $db = self::getDb();
     $atributos = self::atributos();
     $columnas = join(', ', array_keys($atributos));
     $placeholders = join(', ', array_fill(0, count($atributos), '?'));
     $query = "INSERT INTO " . static::$tabla . " ($columnas) VALUES ($placeholders)";
-    $stmt = self::$db->prepare($query);
+    $stmt = $db->prepare($query);
     $resultado = $stmt->execute(array_values($atributos));
     if($resultado) {
       header("Location: /admin?resultado=1");
@@ -105,7 +107,7 @@ abstract class ActiveRecord {
     $atributos['id'] = $this->id;
     $resultado = $stmt->execute($atributos);
     if ($resultado) {
-        header('Location: ../admin?resultado=2');
+        header('Location: /admin?resultado=2');
     }
   }
 

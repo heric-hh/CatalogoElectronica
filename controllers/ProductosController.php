@@ -31,7 +31,7 @@ class ProductosController {
       'totalProductos' => $totalProductos,
       'productosPorPagina' => $productosPorPagina,
       'paginaActual' => $paginaActual,
-      'totalPaginas' => $totalPaginas
+      'totalPaginas' => $totalPaginas,
     ]);
   }
 
@@ -71,23 +71,38 @@ class ProductosController {
       'title' => 'Crear Producto - Administrador de Productos',
       'errores' => [],
       'categorias' => $categorias,
-      'marcas' => $marcas
+      'marcas' => $marcas,
+      'producto' => $producto
     ]);
   }
 
-  public static function crearProducto(Router $router) : void {
+  public static function editarProducto(Router $router) : void {
+    $id = validarORedireccionar("/admin");
     $categorias = Categoria::all("categoria");
+    $producto = Producto::find($id) ?? []; //Producto a editar
     $marcas = Marca::all("marca");
-    $producto = new Producto($_POST["producto"]);
-    debug($producto);
-    $errores = $producto->validar();
-    $router->render('admin_crear_producto', [
-      'title' => 'Crear Producto - Admninistrador de Productos',
+    $errores = Producto::getErrores();
+    
+    $router->render('admin_editar_producto', [
+      'title' => 'Editar Producto - Catálogo De Productos',
+      'producto' => $producto,
       'errores' => $errores,
       'categorias' => $categorias,
       'marcas' => $marcas
     ]);
   }
+
+  public static function guardarProducto(Router $router) : void {
+    $args = $_POST["producto"];
+    $producto = Producto::find($args["id"]);
+    $producto->sincronizar($args);
+    $errores = $producto->validar();
+    if(empty($errores)) {
+      $producto->actualizar();
+    }
+    self::editarProducto($router);
+  }
+
 
   protected static function sanitize(array $data): array {
     return array_map(function($item) {

@@ -27,7 +27,7 @@
               <input type="hidden" name="id" value="">
               <input type="submit" value="Eliminar" class="button">
             </form>
-            <a href="/admin/productos/editar?id" class="button">
+            <a href="/admin/productos/editar?id=<?php echo $producto->id?>" class="button">
               Editar
             </a>
           </td>

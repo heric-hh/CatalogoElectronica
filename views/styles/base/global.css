@@ -66,6 +66,10 @@ select {
   background-color: darkred;
 }
 
+.exito {
+  background-color: darkgreen;
+}
+
 select {
   padding: var(--spacing-sm);
 }
