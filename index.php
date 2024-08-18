@@ -29,5 +29,6 @@ $router->get('/admin/productos/crear', [ProductosController::class, 'showCrearPr
 $router->post('/admin/productos/crear', [ProductosController::class, 'showCrearProducto']);
 $router->get('/admin/productos/editar', [ProductosController::class, 'editarProducto']);
 $router->post('/admin/productos/editar', [ProductosController::class, 'guardarProducto']);
+$router->post('/admin/productos/eliminar', [ProductosController::class, 'eliminarProducto']);
 
 $router->checkRoutes();

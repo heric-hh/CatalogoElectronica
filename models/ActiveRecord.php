@@ -117,8 +117,8 @@ abstract class ActiveRecord {
     $stmt->bindParam(':id', $this->id, PDO::PARAM_INT);
     $resultado = $stmt->execute();
     if ($resultado) {
-        $this->borrarImagen();
-        header('Location: ../admin?resultado=3');
+        // $this->borrarImagen();
+      header('Location: /admin?resultado=3');
     }
   }
 

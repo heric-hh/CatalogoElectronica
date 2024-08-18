@@ -24,7 +24,7 @@
           <td data-label="Disponible"><?php echo $producto->disponible ?></td>
           <td data-label="Acciones">
             <form action="/admin/productos/eliminar" method="post">
-              <input type="hidden" name="id" value="">
+              <input type="hidden" name="id" value="<?php echo $producto->id ?>">
               <input type="submit" value="Eliminar" class="button">
             </form>
             <a href="/admin/productos/editar?id=<?php echo $producto->id?>" class="button">

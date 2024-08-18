@@ -103,6 +103,16 @@ class ProductosController {
     self::editarProducto($router);
   }
 
+  public static function eliminarProducto(Router $router) : void {
+    $id = $_POST["id"];
+    $id = filter_var($id, FILTER_VALIDATE_INT);
+    if($id) {
+      $producto = Producto::find($id);
+      $producto->eliminar();
+    }
+    self::showProductos($router);
+  }
+
 
   protected static function sanitize(array $data): array {
     return array_map(function($item) {
