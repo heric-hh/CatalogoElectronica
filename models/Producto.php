@@ -20,6 +20,8 @@ class Producto extends ActiveRecord {
   public ?string $imagen;
   public string $descripcion_larga;
   public string $descripcion_corta;
+  public ?int $id_categoria;
+  public ?int $id_marca;
   public string $categoria_nombre;
   public string $marca_nombre;
   public string $precio;
@@ -31,6 +33,8 @@ class Producto extends ActiveRecord {
     $this->imagen = $args["imagen"] ?? "";
     $this->descripcion_larga = $args["descripcion_larga"] ?? "";
     $this->descripcion_corta = $args["descripcion_corta"] ?? "";
+    $this->id_categoria = $args["id_categoria"] ?? null;
+    $this->id_marca = $args["id_marca"] ?? null;
     $this->categoria_nombre = $args["categoria_nombre"] ?? "";
     $this->marca_nombre = $args["marca_nombre"] ?? "";
     $this->precio = $args["precio"] ?? 0;
@@ -51,10 +55,10 @@ class Producto extends ActiveRecord {
     if(!$this->descripcion_corta) {
       self::$errores[] = "Debes añadir una descripción del producto";
     }
-    if(!$this->categoria_nombre) {
+    if(!$this->id_categoria) {
       self::$errores[] = "Debes añadir una categoría al producto";
     }
-    if(!$this->marca_nombre) {
+    if(!$this->id_marca) {
       self::$errores[] = "Debes añadir una marca al producto";
     }
     if(!$this->precio) {

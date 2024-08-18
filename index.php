@@ -24,9 +24,9 @@ $router->get('/logout', [LoginController::class, 'procesarLogout']);
 
 //Administrador
 $router->get('/admin', [AdminController::class, 'showAdmin']);
-$router->get('/admin/productos', [AdminController::class, 'showProductos']);
-$router->get('/admin/productos/crear', [AdminController::class, 'showCrearProducto']);
-$router->post('/admin/productos/crear', [AdminController::class, 'crearProducto']);
+$router->get('/admin/productos', [ProductosController::class, 'showProductos']);
+$router->get('/admin/productos/crear', [ProductosController::class, 'showCrearProducto']);
+$router->post('/admin/productos/crear', [ProductosController::class, 'showCrearProducto']);
 
 
 $router->checkRoutes();

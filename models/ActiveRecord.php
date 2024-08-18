@@ -33,11 +33,14 @@ abstract class ActiveRecord {
     }
   }
 
-  // public static function all() : array {
-  //   $query = "SELECT * FROM " . static::$tabla;
-  //   $resultado = self::consultarSQL($query);
-  //   return $resultado;
-  // }
+  public static function all(string $param) : array {
+    $query = "SELECT * FROM " . static::$tabla . " ORDER BY :param";
+    $db = static::getDb();
+    $stmt = $db->prepare($query);
+    $stmt->bindValue(':param', $param, PDO::PARAM_STR);
+    $stmt->execute();
+    return self::consultarSQL($stmt);
+  }
 
   public static function allProductos(int $pagina, int $porPagina) : array {
     $rango = ($pagina - 1) * $porPagina;
@@ -71,7 +74,7 @@ abstract class ActiveRecord {
   }
 
   public static function find(int $id) : ?self {
-    $query = "SELECT * FROM" . static::$tabla . "WHERE id = :id";
+    $query = "SELECT * FROM " . static::$tabla . " WHERE id = :id";
     $stmt = self::$db->prepare($query);
     $stmt->bindParam(":id", $id, PDO::PARAM_INT);
     $stmt->execute();
@@ -79,11 +82,11 @@ abstract class ActiveRecord {
     return $registro ? static::crearObjeto($registro) : null;
   }
 
-  public static function crear() : void {
-    $atributos = $this->sanitizarAtributos();
+  public function crear() : void {
+    $atributos = self::atributos();
     $columnas = join(', ', array_keys($atributos));
-    $valores = join(', ', array_fill(0, count($atributos), '?'));
-    $query = "INSERT INTO " . static::$tabla . " ($columnas) VALUES ($valores)";
+    $placeholders = join(', ', array_fill(0, count($atributos), '?'));
+    $query = "INSERT INTO " . static::$tabla . " ($columnas) VALUES ($placeholders)";
     $stmt = self::$db->prepare($query);
     $resultado = $stmt->execute(array_values($atributos));
     if($resultado) {
@@ -125,18 +128,6 @@ abstract class ActiveRecord {
     return $array;
 }
 
-
-  // public static function consultarSQL(string $query): array {
-  //   $db = self::getDb();
-  //   $resultado = $db->query($query);
-  //   debug($resultado);
-  //   $array = [];
-  //   while ($registro = $resultado->fetch(PDO::FETCH_ASSOC)) {
-  //     $array[] = static::crearObjeto($registro);
-  //   }
-  //   return $array;
-  // }
-
   protected static function crearObjeto(array $registro): self {
     $objeto = new static;
     foreach ($registro as $key => $value) {
@@ -151,7 +142,7 @@ abstract class ActiveRecord {
     $atributos = [];
     foreach (static::$columnasDb as $columna) {
       if ($columna === 'id') continue;
-      $atributos[$columna] = $this->$columna; 
+      $atributos[$columna] = $this->$columna;
     }
     return $atributos;
   } 

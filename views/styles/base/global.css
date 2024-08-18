@@ -65,3 +65,7 @@ select {
 .error {
   background-color: darkred;
 }
+
+select {
+  padding: var(--spacing-sm);
+}

@@ -25,15 +25,20 @@
     </div>
     <div class="label-input-wrapper">
       <label for="categoria" class="label">Categoría del producto</label>
-      <select name="producto[categoria]" id="categoria">
+      <select name="producto[id_categoria]" id="categoria">
         <option value="">Seleccionar</option>
-        <option value=""></option>
+        <?php foreach($categorias as $categoria) : ?>
+          <option value="<?php echo $categoria->id?>"><?php echo $categoria->categoria?></option>
+        <?php endforeach ?>
       </select>
     </div>
     <div class="label-input-wrapper">
       <label for="marca" class="label">Marca del Producto</label>
-      <select name="producto[marca]" id="marca">
+      <select name="producto[id_marca]" id="marca">
         <option value="">Seleccionar</option>
+        <?php foreach($marcas as $marca) : ?>
+          <option value="<?php echo $marca->id?>"><?php echo $marca->marca?></option>
+        <?php endforeach ?>
       </select>
     </div>
     <div class="label-input-wrapper">
@@ -44,6 +49,8 @@
       <label for="disponible" class="label">Disponible</label>
       <select name="producto[disponible]" id="disponible">
         <option value="">Seleccionar</option>
+        <option value="true">Disponible</option>
+        <option value="false">No disponible</option>
       </select>
     </div>
     <input type="submit" value="Guardar Producto" class="button button-primary">
