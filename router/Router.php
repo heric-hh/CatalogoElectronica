@@ -36,12 +36,12 @@ class Router {
       $$key = $value;
     }
     ob_start();
-    if($view === "login") {
-      //Codigo para la vista de login y administrador
-      include __DIR__ . "/../views/layout/layout.html.php";
-      include __DIR__ . "/../views/layout/header.html.php";
-      include __DIR__ . "/../views/pages/$view.html.php";  
-    } 
+    // if($view === "login") {
+    //   //Codigo para la vista de login y administrador
+    //   include __DIR__ . "/../views/layout/layout.html.php";
+    //   include __DIR__ . "/../views/layout/header.html.php";
+    //   include __DIR__ . "/../views/pages/$view.html.php";  
+    // } 
     if(strpos($view, "admin") !== false) {
       include __DIR__ . "/../views/layout/layout.html.php";
       include __DIR__ . "/../views/layout/header.html.php";

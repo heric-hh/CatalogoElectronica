@@ -69,7 +69,7 @@ class ProductosController {
     
     $router->render('admin_crear_producto', [
       'title' => 'Crear Producto - Administrador de Productos',
-      'errores' => [],
+      'errores' => $errores,
       'categorias' => $categorias,
       'marcas' => $marcas,
       'producto' => $producto
@@ -112,7 +112,6 @@ class ProductosController {
     }
     self::showProductos($router);
   }
-
 
   protected static function sanitize(array $data): array {
     return array_map(function($item) {

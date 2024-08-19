@@ -8,6 +8,7 @@
     </div>
   <?php endforeach ?>
   <form action="/admin/productos/crear" method="post" class="form">
-  <?php require_once __DIR__ . "/../layout/form_productos.html.php"; ?>
-  <input type="submit" value="Guardar Producto" class="button button-primary">
+    <?php require_once __DIR__ . "/../layout/form_productos.html.php"; ?>
+    <input type="submit" value="Guardar Producto" class="button button-primary">
+  </form>
 </section>

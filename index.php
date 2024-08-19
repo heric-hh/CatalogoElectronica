@@ -24,11 +24,23 @@ $router->get('/logout', [LoginController::class, 'procesarLogout']);
 
 //Administrador
 $router->get('/admin', [AdminController::class, 'showAdmin']);
+
+//Productos
 $router->get('/admin/productos', [ProductosController::class, 'showProductos']);
 $router->get('/admin/productos/crear', [ProductosController::class, 'showCrearProducto']);
-$router->post('/admin/productos/crear', [ProductosController::class, 'showCrearProducto']);
 $router->get('/admin/productos/editar', [ProductosController::class, 'editarProducto']);
+
+$router->post('/admin/productos/crear', [ProductosController::class, 'showCrearProducto']);
 $router->post('/admin/productos/editar', [ProductosController::class, 'guardarProducto']);
 $router->post('/admin/productos/eliminar', [ProductosController::class, 'eliminarProducto']);
+
+//Categorias
+$router->get('/admin/categorias',[CategoriasController::class, 'showCategorias']);
+$router->get('/admin/categorias/crear', [CategoriasController::class, 'crearCategoria']);
+$router->get('/admin/categorias/editar', [CategoriasController::class, 'editarCategoria']);
+
+$router->post('/admin/categorias/crear', [CategoriasController::class, 'crearCategoria']);
+$router->post('/admin/categorias/editar', [CategoriasController::class, 'guardarCategoria']);
+$router->post('/admin/categorias/eliminar', [CategoriasController::class, 'eliminarCategoria']);
 
 $router->checkRoutes();

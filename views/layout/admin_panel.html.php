@@ -13,13 +13,13 @@
       </a>
     </li>
     <li class="admin-panel__opt-wrapper">
-      <a href="#" class="admin-panel__link">
+      <a href="/admin/marcas" class="admin-panel__link">
         <img src="" alt="">
         <span class="admin-panel__opt-title">Marcas</span>
       </a>
     </li>
     <li class="admin-panel__opt-wrapper">
-      <a href="#" class="admin-panel__link">
+      <a href="/admin/categorias" class="admin-panel__link">
         <span class="admin-panel__opt-title">Categorías</span>
       </a>
     </li>

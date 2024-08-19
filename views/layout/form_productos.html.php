@@ -1,7 +1,7 @@
 <div class="label-input-wrapper">
   <label for="nombre" class="label">Nombre del Producto</label>
-  <input type="hidden" name="producto[id]" value="<?php echo sanitize($producto->id); ?>" />
-  <input type="text" class="input" placeholder="Ingresa el nombre del producto" name="producto[nombre]" id="nombre" value="<?php echo sanitize($producto->nombre) ?? ""?>">
+  <input type="hidden" name="producto[id]" value="<?php echo sanitize($producto->id); ?>">
+  <input type="text" class="input" placeholder="Ingresa el nombre del producto" name="producto[nombre]" id="nombre" value="<?php echo sanitize($producto->nombre)?>">
 </div>
 <div class="label-input-wrapper">
   <label for="imagen" class="label">Imagen del Producto</label>
@@ -9,7 +9,7 @@
 </div>
 <div class="label-input-wrapper">
   <label for="descripcion_larga" class="label">Descripción Larga del Producto</label>
-  <textarea name="producto[descripcion_larga]" id="descripcion_larga"> <?php echo sanitize($producto->descripcion_larga)?></textarea>
+  <textarea name="producto[descripcion_larga]" id="descripcion_larga"><?php echo sanitize($producto->descripcion_larga)?></textarea>
 </div>
 <div class="label-input-wrapper">
   <label for="descripcion_corta" class="label">Descripción Corta del Producto</label>
