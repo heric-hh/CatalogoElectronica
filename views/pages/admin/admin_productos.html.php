@@ -1,5 +1,7 @@
 <section class="section">
-  <section class="productos-buttons">
+  <h3 class="title">Productos</h3>
+  <p class="subtitle">Administra la información de tus productos</p>
+  <section class="section-buttons">
     <a href="/admin/productos/crear" class="button button-primary">Crear Producto</a>
   </section>
   <section class="section-table">

@@ -28,13 +28,13 @@ class Producto extends ActiveRecord {
   public bool $disponible;
 
   public function __construct(array $args = []) {
-    $this->id = $args["id"] ?? null;
+    $this->id = isset($args["id"]) ? (int)$args["id"] : null;
     $this->nombre = $args["nombre"] ?? "";
     $this->imagen = $args["imagen"] ?? "";
     $this->descripcion_larga = $args["descripcion_larga"] ?? "";
     $this->descripcion_corta = $args["descripcion_corta"] ?? "";
-    $this->id_categoria = $args["id_categoria"] ?? null;
-    $this->id_marca = $args["id_marca"] ?? null;
+    $this->id_categoria = isset($args["id_categoria"]) ? (int)$args["id_categoria"] : null;
+    $this->id_marca = isset($args["id_marca"]) ? (int)$args["id_marca"] : null;
     $this->categoria_nombre = $args["categoria_nombre"] ?? "";
     $this->marca_nombre = $args["marca_nombre"] ?? "";
     $this->precio = $args["precio"] ?? 0;

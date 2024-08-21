@@ -1,7 +1,7 @@
 <div class="label-input-wrapper">
   <label for="nombre" class="label">Nombre del Producto</label>
-  <input type="hidden" name="producto[id]" value="<?php echo sanitize($producto->id); ?>">
-  <input type="text" class="input" placeholder="Ingresa el nombre del producto" name="producto[nombre]" id="nombre" value="<?php echo sanitize($producto->nombre)?>">
+  <input type="hidden" name="producto[id]" value="<?php echo $producto->id ?>">
+  <input type="text" class="input" placeholder="Ingresa el nombre del producto" name="producto[nombre]" id="nombre" value="<?php echo $producto->nombre?>">
 </div>
 <div class="label-input-wrapper">
   <label for="imagen" class="label">Imagen del Producto</label>
@@ -9,11 +9,11 @@
 </div>
 <div class="label-input-wrapper">
   <label for="descripcion_larga" class="label">Descripción Larga del Producto</label>
-  <textarea name="producto[descripcion_larga]" id="descripcion_larga"><?php echo sanitize($producto->descripcion_larga)?></textarea>
+  <textarea name="producto[descripcion_larga]" id="descripcion_larga"><?php echo $producto->descripcion_larga ?></textarea>
 </div>
 <div class="label-input-wrapper">
   <label for="descripcion_corta" class="label">Descripción Corta del Producto</label>
-  <input type="text" name="producto[descripcion_corta]" id="descripcion_corta" class="input" placeholder="Interfaz de audio, guitarra, etc" value="<?php echo sanitize($producto->descripcion_corta)?>">
+  <input type="text" name="producto[descripcion_corta]" id="descripcion_corta" class="input" placeholder="Interfaz de audio, guitarra, etc" value="<?php echo $producto->descripcion_corta ?>">
 </div>
 <div class="label-input-wrapper">
   <label for="categoria" class="label">Categoría del producto</label>
@@ -39,7 +39,7 @@
 </div>
 <div class="label-input-wrapper">
   <label for="precio" class="label">Precio del Producto</label>
-  <input type="number" class="input" placeholder="$200.00" name="producto[precio]" value="<?php echo sanitize($producto->precio)?>">
+  <input type="number" class="input" placeholder="$200.00" name="producto[precio]" value="<?php echo $producto->precio?>">
 </div>
 <div class="label-input-wrapper">
   <label for="disponible" class="label">Disponible</label>

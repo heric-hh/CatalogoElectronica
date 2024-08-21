@@ -39,7 +39,7 @@ class ProductosController {
     $categorias = Categoria::all("categoria");
     $marcas = Marca::all("marca");
     $producto = new Producto();
-    $errores = [];
+    $errores = Producto::getErrores();
 
     if($_SERVER["REQUEST_METHOD"] === "POST") {
       $producto = new Producto($_POST["producto"]);

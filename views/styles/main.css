@@ -11,7 +11,7 @@
 @import "pages/productos.css";
 @import "pages/nosotros.css";
 @import "pages/login.css";
-@import "pages/admin-productos.css";
+@import "pages/admin-page.css";
 
 /*Componentes*/
 @import "components/buttons.css";

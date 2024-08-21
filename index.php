@@ -7,6 +7,8 @@ use Controllers\CategoriasController;
 use Controllers\ProductosController;
 use Controllers\LoginController;
 use Controllers\AdminController;
+use Controllers\MarcaController;
+use Controllers\MarcasController;
 use MVC\Router;
 
 $router = new Router();
@@ -42,5 +44,12 @@ $router->get('/admin/categorias/editar', [CategoriasController::class, 'editarCa
 $router->post('/admin/categorias/crear', [CategoriasController::class, 'crearCategoria']);
 $router->post('/admin/categorias/editar', [CategoriasController::class, 'guardarCategoria']);
 $router->post('/admin/categorias/eliminar', [CategoriasController::class, 'eliminarCategoria']);
+
+//Marcas
+$router->get('/admin/marcas', [MarcasController::class, 'showMarcas']);
+$router->get('/admin/marcas/crear', [MarcasController::class, 'crearMarca']);
+$router->get('/admin/marcas/editar', [MarcasController::class, 'editarMarca']);
+
+$router->post('/admin/marcas/crear', [MarcasController::class, 'crearMarca']);
 
 $router->checkRoutes();

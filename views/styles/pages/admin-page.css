@@ -55,6 +55,7 @@
   margin: 20px 0;
   list-style: none;
   padding: 0;
+  margin-bottom: 5rem;
 }
 
 .pagination a {
@@ -101,5 +102,9 @@
 
 /*Crear producto*/
 .label {
+  margin: var(--spacing-sm) 0;
+}
+
+.section-buttons {
   margin: var(--spacing-sm) 0;
 }
