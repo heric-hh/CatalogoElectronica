@@ -12,6 +12,11 @@ class ComposerStaticInit13db5f7a09094abea887f930c98199b1
             'Models\\' => 7,
             'MVC\\' => 4,
         ),
+        'I' => 
+        array (
+            'Intervention\\Image\\' => 19,
+            'Intervention\\Gif\\' => 17,
+        ),
         'D' => 
         array (
             'Database\\' => 9,
@@ -30,6 +35,14 @@ class ComposerStaticInit13db5f7a09094abea887f930c98199b1
         'MVC\\' => 
         array (
             0 => __DIR__ . '/../..' . '/router',
+        ),
+        'Intervention\\Image\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/intervention/image/src',
+        ),
+        'Intervention\\Gif\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/intervention/gif/src',
         ),
         'Database\\' => 
         array (

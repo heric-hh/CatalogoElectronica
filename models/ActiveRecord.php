@@ -159,9 +159,11 @@ abstract class ActiveRecord {
   }
 
   public function setImagen(string $imagen): void {
+    //Eliminar la imagen previa si ya existe un registro
     if (!is_null($this->id)) {
       $this->borrarImagen();
     }
+    //Asignar al atributo imagen el nombre de la imagen
     if ($imagen) {
       $this->imagen = $imagen;
     }
@@ -171,6 +173,6 @@ abstract class ActiveRecord {
     $existeArchivo = file_exists(CARPETA_IMAGENES . $this->imagen);
     if ($existeArchivo) {
       unlink(CARPETA_IMAGENES . $this->imagen);
-  }
+    }
   }
 }

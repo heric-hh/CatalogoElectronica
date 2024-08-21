@@ -1,5 +1,7 @@
 <?php
 
+CONST CARPETA_IMAGENES = __DIR__ . "/../views/assets/img_productos/";
+
 function debug(mixed $var) : never {
   echo "<pre>";
   var_dump($var);

@@ -16,5 +16,7 @@
             "email": "erhh.015@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "intervention/image": "^3.8"
+    }
 }

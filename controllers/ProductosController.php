@@ -6,6 +6,8 @@ use Models\Categoria;
 use Models\Marca;
 use Models\Producto;
 use MVC\Router;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
 
 class ProductosController {
   public static function showIndex(Router $router) : void {
@@ -42,6 +44,16 @@ class ProductosController {
 
     if($_SERVER["REQUEST_METHOD"] === "POST") {
       $producto = new Producto($_POST["producto"]);
+      $nombreImagen = md5(uniqid( rand(), true));
+
+      //Si se ha enviado una imagen
+      if(isset($_FILES["producto"]["tmp_name"]["imagen"])) {
+        $manager = new ImageManager(new Driver());
+        $image = $manager->read($_FILES["producto"]["tmp_name"]["imagen"]);
+        $image->resize(width:640);
+        $image->resize(height: 480);
+        $producto->setImagen($nombreImagen);
+      }
       
       if($producto->id_categoria) {
         $categoria = Categoria::find($producto->id_categoria);
@@ -58,7 +70,15 @@ class ProductosController {
       $errores = $producto->validar();
       
       if(empty($errores)) {
+
+        if(!is_dir(CARPETA_IMAGENES)) {
+          mkdir(CARPETA_IMAGENES);
+        }
+
+        $encoded = $image->toWebp();
+        $encoded->save(CARPETA_IMAGENES . $nombreImagen . ".webp");
         $resultado = $producto->guardar();
+        
         if($resultado) {
           header('Location: /admin/productos?resulado=1');
           exit;

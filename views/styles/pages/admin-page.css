@@ -108,3 +108,12 @@
 .section-buttons {
   margin: var(--spacing-sm) 0;
 }
+
+/*Contenedor para imagen al editar*/
+.editar-img-wrapper {
+  padding: var(--spacing-sm) var(--spacing-md);
+  
+  img {
+    border-radius: var(--border-radius-buttons);
+  }
+}

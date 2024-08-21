@@ -6,6 +6,11 @@
 <div class="label-input-wrapper">
   <label for="imagen" class="label">Imagen del Producto</label>
   <input type="file" id="imagen" accept="image/jpeg, image/png" name="producto[imagen]">
+  <?php if($producto->imagen) : ?>
+    <div class="editar-img-wrapper">
+      <img src="/views/assets/img_productos/<?php echo $producto->imagen ?>.webp" alt="imagen_producto">
+    </div>
+  <?php endif ?>
 </div>
 <div class="label-input-wrapper">
   <label for="descripcion_larga" class="label">Descripción Larga del Producto</label>
