@@ -69,5 +69,4 @@ class Producto extends ActiveRecord {
     }
     return self::$errores;
   }
-
 }

@@ -8,7 +8,7 @@
     </div>
   <?php endforeach ?>
   <form action="/admin/categorias/crear" method="post" class="form">
-  <?php require_once __DIR__ . "/../layout/form_categorias.html.php" ?>
+  <?php require_once __DIR__ . "/../../layout/forms/form_categorias.html.php" ?>
   <input type="submit" value="Guardar Categoría" class="button button-primary">
   </form>
 </section>

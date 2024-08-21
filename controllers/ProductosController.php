@@ -78,7 +78,7 @@ class ProductosController {
   public static function editarProducto(Router $router) : void {
     $id = validarORedireccionar("/admin");
     $categorias = Categoria::all("categoria");
-    $producto = Producto::find($id) ?? []; //Producto a editar
+    $producto = Producto::find($id); //Producto a editar
     $marcas = Marca::all("marca");
     $errores = Producto::getErrores();
     

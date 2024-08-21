@@ -51,5 +51,7 @@ $router->get('/admin/marcas/crear', [MarcasController::class, 'crearMarca']);
 $router->get('/admin/marcas/editar', [MarcasController::class, 'editarMarca']);
 
 $router->post('/admin/marcas/crear', [MarcasController::class, 'crearMarca']);
+$router->post('/admin/marcas/editar', [MarcasController::class, 'editarMarca']);
+$router->post('/admin/marcas/eliminar', [MarcasController::class, 'eliminarMarca']);
 
 $router->checkRoutes();

@@ -12,7 +12,7 @@ class Categoria extends ActiveRecord {
   public string $categoria;
 
   public function __construct(array $args = []) {
-    $this->id = $args["id"] ?? null;
+    $this->id = isset($args["id"]) && !empty($args["id"]) ? (int)$args["id"] : null;
     $this->categoria = $args["categoria"] ?? "";
   }
 

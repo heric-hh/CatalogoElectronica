@@ -38,6 +38,33 @@ class MarcasController {
   }
 
   public static function editarMarca(Router $router) : void {
+    $id = validarORedireccionar("/admin");
+    $marca = Marca::find($id);
+    $errores = [];
 
+    if($_SERVER["REQUEST_METHOD"] === "POST") {
+      $marca = new Marca($_POST["marca"]);
+      $errores = $marca->validar();
+
+      if(empty($errores)) {
+        $marca->guardar();
+      }
+    }
+
+    $router->render('admin_editar_marca', [
+      'title' => 'Editar Marca - Catálogo De Productos',
+      'errores' => $errores,
+      'marca' => $marca
+    ]);
+  }
+
+  public static function eliminarMarca(Router $router) : void {
+    $id = $_POST["id"];
+    $id = filter_var($id, FILTER_VALIDATE_INT);
+    if($id) {
+      $marca = Marca::find($id);
+      $marca->eliminar();
+    }
+    self::showMarcas($router);
   }
 }
