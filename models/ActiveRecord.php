@@ -26,7 +26,7 @@ abstract class ActiveRecord {
   }
 
   public function guardar() : void {
-    if(!is_null($this->id)) {
+    if(!is_null($this->id) && $this->id > 0) {
       $this->actualizar();
     } else {
       $this->crear();

@@ -13,7 +13,7 @@ class Marca extends ActiveRecord {
   public string $marca;
 
   public function __construct(array $args = []) {
-    $this->id = $args["id"] ?? null;
+    $this->id = isset($args["id"]) ? (int)$args["id"] : null;
     $this->marca = $args["marca"] ?? "";
   }
 

@@ -21,7 +21,6 @@ class ProductosController {
     $productosPorPagina = 20;
     $totalProductos = Producto::count();
     $totalPaginas = ceil($totalProductos / $productosPorPagina);
-
     $productos = Producto::allProductos($paginaActual, $productosPorPagina);
     $productosS = self::sanitize($productos);
     
@@ -39,7 +38,7 @@ class ProductosController {
     $categorias = Categoria::all("categoria");
     $marcas = Marca::all("marca");
     $producto = new Producto();
-    $errores = Producto::getErrores();
+    $errores = [];
 
     if($_SERVER["REQUEST_METHOD"] === "POST") {
       $producto = new Producto($_POST["producto"]);
@@ -61,7 +60,7 @@ class ProductosController {
       if(empty($errores)) {
         $resultado = $producto->guardar();
         if($resultado) {
-          header('Location: /admin/productos?mensaje=1');
+          header('Location: /admin/productos?resulado=1');
           exit;
         }
       }

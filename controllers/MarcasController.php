@@ -20,8 +20,15 @@ class MarcasController {
     $errores = [];
     
     if($_SERVER["REQUEST_METHOD"] === "POST") {
-      debug($_POST);
       $marca = new Marca($_POST["marca"]);
+      $errores = $marca->validar();
+      if(empty($errores)) {
+        $resultado = $marca->guardar();
+        if($resultado) {
+          header('Location: /admin/marcas?mensaje=1');
+          exit;
+        }
+      }
     }
     $router->render('admin_crear_marca', [
       'title' => 'Crear Marca - Catálogo De Productos',

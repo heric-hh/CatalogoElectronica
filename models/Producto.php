@@ -28,7 +28,7 @@ class Producto extends ActiveRecord {
   public bool $disponible;
 
   public function __construct(array $args = []) {
-    $this->id = isset($args["id"]) ? (int)$args["id"] : null;
+    $this->id = isset($args["id"]) && !empty($args["id"]) ? (int)$args["id"] : null;
     $this->nombre = $args["nombre"] ?? "";
     $this->imagen = $args["imagen"] ?? "";
     $this->descripcion_larga = $args["descripcion_larga"] ?? "";
