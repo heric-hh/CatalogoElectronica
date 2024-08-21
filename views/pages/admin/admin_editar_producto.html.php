@@ -7,7 +7,7 @@
       <?php echo $error; ?>
     </div>
   <?php endforeach ?>
-  <form action="" method="post" class="form">
+  <form action="/admin/productos/editar" method="post" class="form" enctype="multipart/form-data">
     <?php require_once __DIR__ . "/../../layout/forms/form_productos.html.php"; ?>
     <input type="submit" value="Editar Producto" class="button button-secondary">
   </form>

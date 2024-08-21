@@ -47,7 +47,7 @@ class ProductosController {
       $nombreImagen = md5(uniqid( rand(), true));
 
       //Si se ha enviado una imagen
-      if(isset($_FILES["producto"]["tmp_name"]["imagen"])) {
+      if($_FILES["producto"]["tmp_name"]["imagen"]) {
         $manager = new ImageManager(new Driver());
         $image = $manager->read($_FILES["producto"]["tmp_name"]["imagen"]);
         $image->resize(width:640);
@@ -78,7 +78,7 @@ class ProductosController {
         $encoded = $image->toWebp();
         $encoded->save(CARPETA_IMAGENES . $nombreImagen . ".webp");
         $resultado = $producto->guardar();
-        
+
         if($resultado) {
           header('Location: /admin/productos?resulado=1');
           exit;
@@ -116,7 +116,21 @@ class ProductosController {
     $producto = Producto::find($args["id"]);
     $producto->sincronizar($args);
     $errores = $producto->validar();
+    $nombreImagen = md5(uniqid( rand(), true));
+
+    if($_FILES["producto"]["tmp_name"]["imagen"]) {
+      $manager = new ImageManager(new Driver());
+      $image = $manager->read($_FILES["producto"]["tmp_name"]["imagen"]);
+      $image->resize(width:640);
+      $image->resize(height: 480);
+      $producto->setImagen($nombreImagen);
+    }
+
     if(empty($errores)) {
+      if($_FILES["producto"]["tmp_name"]["imagen"]) {
+        $encoded = $image->toWebp();
+        $encoded->save(CARPETA_IMAGENES . $nombreImagen . ".webp");
+      }
       $producto->actualizar();
     }
     self::editarProducto($router);

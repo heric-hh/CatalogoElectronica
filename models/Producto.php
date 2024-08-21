@@ -17,7 +17,7 @@ class Producto extends ActiveRecord {
   ];
   public ?int $id;
   public string $nombre;
-  public ?string $imagen;
+  public string $imagen;
   public string $descripcion_larga;
   public string $descripcion_corta;
   public ?int $id_categoria;
@@ -48,6 +48,9 @@ class Producto extends ActiveRecord {
   public function validar() : array {
     if(!$this->nombre) {
       self::$errores[] = "Debes añadir el nombre del producto";
+    }
+    if(!$this->imagen) {
+      self::$errores[] = "La imagen del producto es obligatoria";
     }
     if(strlen(!$this->descripcion_larga) > 50) {
       self::$errores[] = "Debes añadir una descripción mas grande del producto";

@@ -107,7 +107,7 @@ abstract class ActiveRecord {
     $atributos['id'] = $this->id;
     $resultado = $stmt->execute($atributos);
     if ($resultado) {
-        header('Location: /admin?resultado=2');
+      header('Location: /admin?resultado=2');
     }
   }
 
@@ -117,7 +117,7 @@ abstract class ActiveRecord {
     $stmt->bindParam(':id', $this->id, PDO::PARAM_INT);
     $resultado = $stmt->execute();
     if ($resultado) {
-        // $this->borrarImagen();
+      $this->borrarImagen();
       header('Location: /admin?resultado=3');
     }
   }
@@ -170,9 +170,9 @@ abstract class ActiveRecord {
   }
 
   public function borrarImagen(): void {
-    $existeArchivo = file_exists(CARPETA_IMAGENES . $this->imagen);
+    $existeArchivo = file_exists(CARPETA_IMAGENES . $this->imagen . ".webp");
     if ($existeArchivo) {
-      unlink(CARPETA_IMAGENES . $this->imagen);
+      unlink(CARPETA_IMAGENES . $this->imagen . ".webp");
     }
   }
 }
