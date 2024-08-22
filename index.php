@@ -6,8 +6,8 @@ use Controllers\CategoriasController;
 use Controllers\ProductosController;
 use Controllers\LoginController;
 use Controllers\AdminController;
-use Controllers\MarcaController;
 use Controllers\MarcasController;
+use Middleware\AuthMiddleware;
 use MVC\Router;
 
 $router = new Router();
@@ -24,33 +24,33 @@ $router->post('/login', [LoginController::class, 'procesarLogin']);
 $router->get('/logout', [LoginController::class, 'procesarLogout']);
 
 //Administrador
-$router->get('/admin', [AdminController::class, 'showAdmin']);
+$router->get('/admin', [AdminController::class, 'showAdmin'], [AuthMiddleware::class, 'verificarAutenticacion']);
 
 //Productos
-$router->get('/admin/productos', [ProductosController::class, 'showProductos']);
-$router->get('/admin/productos/crear', [ProductosController::class, 'showCrearProducto']);
-$router->get('/admin/productos/editar', [ProductosController::class, 'editarProducto']);
+$router->get('/admin/productos', [ProductosController::class, 'showProductos'], [AuthMiddleware::class, 'verificarAutenticacion']);
+$router->get('/admin/productos/crear', [ProductosController::class, 'showCrearProducto'], [AuthMiddleware::class, 'verificarAutenticacion']);
+$router->get('/admin/productos/editar', [ProductosController::class, 'editarProducto'], [AuthMiddleware::class, 'verificarAutenticacion']);
 
-$router->post('/admin/productos/crear', [ProductosController::class, 'showCrearProducto']);
-$router->post('/admin/productos/editar', [ProductosController::class, 'guardarProducto']);
-$router->post('/admin/productos/eliminar', [ProductosController::class, 'eliminarProducto']);
+$router->post('/admin/productos/crear', [ProductosController::class, 'showCrearProducto'], [AuthMiddleware::class, 'verificarAutenticacion']);
+$router->post('/admin/productos/editar', [ProductosController::class, 'guardarProducto'], [AuthMiddleware::class, 'verificarAutenticacion']);
+$router->post('/admin/productos/eliminar', [ProductosController::class, 'eliminarProducto'], [AuthMiddleware::class, 'verificarAutenticacion']);
 
 //Categorias
-$router->get('/admin/categorias',[CategoriasController::class, 'showCategorias']);
-$router->get('/admin/categorias/crear', [CategoriasController::class, 'crearCategoria']);
-$router->get('/admin/categorias/editar', [CategoriasController::class, 'editarCategoria']);
+$router->get('/admin/categorias',[CategoriasController::class, 'showCategorias'], [AuthMiddleware::class, 'verificarAutenticacion']);
+$router->get('/admin/categorias/crear', [CategoriasController::class, 'crearCategoria'], [AuthMiddleware::class, 'verificarAutenticacion']);
+$router->get('/admin/categorias/editar', [CategoriasController::class, 'editarCategoria'], [AuthMiddleware::class, 'verificarAutenticacion']);
 
-$router->post('/admin/categorias/crear', [CategoriasController::class, 'crearCategoria']);
-$router->post('/admin/categorias/editar', [CategoriasController::class, 'guardarCategoria']);
-$router->post('/admin/categorias/eliminar', [CategoriasController::class, 'eliminarCategoria']);
+$router->post('/admin/categorias/crear', [CategoriasController::class, 'crearCategoria'], [AuthMiddleware::class, 'verificarAutenticacion']);
+$router->post('/admin/categorias/editar', [CategoriasController::class, 'guardarCategoria'], [AuthMiddleware::class, 'verificarAutenticacion']);
+$router->post('/admin/categorias/eliminar', [CategoriasController::class, 'eliminarCategoria'], [AuthMiddleware::class, 'verificarAutenticacion']);
 
 //Marcas
-$router->get('/admin/marcas', [MarcasController::class, 'showMarcas']);
-$router->get('/admin/marcas/crear', [MarcasController::class, 'crearMarca']);
-$router->get('/admin/marcas/editar', [MarcasController::class, 'editarMarca']);
+$router->get('/admin/marcas', [MarcasController::class, 'showMarcas'], [AuthMiddleware::class, 'verificarAutenticacion']);
+$router->get('/admin/marcas/crear', [MarcasController::class, 'crearMarca'], [AuthMiddleware::class, 'verificarAutenticacion']);
+$router->get('/admin/marcas/editar', [MarcasController::class, 'editarMarca'], [AuthMiddleware::class, 'verificarAutenticacion']);
 
-$router->post('/admin/marcas/crear', [MarcasController::class, 'crearMarca']);
-$router->post('/admin/marcas/editar', [MarcasController::class, 'editarMarca']);
-$router->post('/admin/marcas/eliminar', [MarcasController::class, 'eliminarMarca']);
+$router->post('/admin/marcas/crear', [MarcasController::class, 'crearMarca'], [AuthMiddleware::class, 'verificarAutenticacion']);
+$router->post('/admin/marcas/editar', [MarcasController::class, 'editarMarca'], [AuthMiddleware::class, 'verificarAutenticacion']);
+$router->post('/admin/marcas/eliminar', [MarcasController::class, 'eliminarMarca'], [AuthMiddleware::class, 'verificarAutenticacion']);
 
 $router->checkRoutes();

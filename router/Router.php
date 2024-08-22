@@ -6,12 +6,12 @@ class Router {
   private array $getRoutes = [];
   private array $postRoutes = [];
 
-  public function get(string $actualUrl, array $function) : void {
-    $this->getRoutes[$actualUrl] = $function;
+  public function get(string $actualUrl, array $function, ?array $middleware = null) : void {
+    $this->getRoutes[$actualUrl] = ['fn' => $function, 'middleware' => $middleware];
   }
 
-  public function post(string $actualUrl, array $function) : void {
-    $this->postRoutes[$actualUrl] = $function;
+  public function post(string $actualUrl, array $function, ?array $middleware = null) : void {
+    $this->postRoutes[$actualUrl] = ['fn' => $function, 'middleware' => $middleware];
   }
 
   public function checkRoutes() : void {
@@ -19,12 +19,18 @@ class Router {
     $requestType = $_SERVER['REQUEST_METHOD'];
 
     if($requestType == 'GET') {
-      $fn = $this->getRoutes[$actualUrl] ?? null;
+      $route = $this->getRoutes[$actualUrl] ?? null;
     } else {
-      $fn = $this->postRoutes[$actualUrl] ?? null;
+      $route = $this->postRoutes[$actualUrl] ?? null;
     }
 
-    if($fn) {
+    if($route) {
+      $fn = $route["fn"];
+      $middleware = $route["middleware"] ?? null;
+
+      if($middleware) {
+        call_user_func($middleware);
+      }
       call_user_func($fn, $this);
     } else {
       echo 'Pagina no encontrada';

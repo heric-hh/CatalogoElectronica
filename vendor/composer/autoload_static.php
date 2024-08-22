@@ -10,6 +10,7 @@ class ComposerStaticInit13db5f7a09094abea887f930c98199b1
         'M' => 
         array (
             'Models\\' => 7,
+            'Middleware\\' => 11,
             'MVC\\' => 4,
         ),
         'I' => 
@@ -31,6 +32,10 @@ class ComposerStaticInit13db5f7a09094abea887f930c98199b1
         'Models\\' => 
         array (
             0 => __DIR__ . '/../..' . '/models',
+        ),
+        'Middleware\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/middleware',
         ),
         'MVC\\' => 
         array (

@@ -7,7 +7,8 @@
             "MVC\\": "./router",
             "Controllers\\": "./controllers",
             "Models\\": "./models",
-            "Database\\": "./helpers"
+            "Database\\": "./helpers",
+            "Middleware\\": "./middleware"
         }
     },
     "authors": [
