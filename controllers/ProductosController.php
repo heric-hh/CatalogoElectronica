@@ -11,8 +11,24 @@ use Intervention\Image\Drivers\Gd\Driver;
 
 class ProductosController {
   public static function showIndex(Router $router) : void {
+    $paginaActual = $_GET['pagina'] ?? 1;
+    $productosPorPagina = 20;
+    $totalProductos = Producto::count();
+    $totalPaginas = ceil($totalProductos/$productosPorPagina);
+    $productos = Producto::allProductos($paginaActual, $productosPorPagina);
+    $productosSanitizados = self::sanitize($productos);
+    $categorias = Categoria::all("categoria");
+    $marcas = Marca::all("marca");
+
     $router->render('productos', [
-      'title' => "Productos - Catálogo De Productos"
+      'title' => "Productos - Catálogo De Productos",
+      'productos' => $productosSanitizados,
+      'totalProductos' => $totalProductos,
+      'productosPorPagina' => $productosPorPagina,
+      'paginaActual' => $paginaActual,
+      'totalPaginas' => $totalPaginas,
+      'categorias' => $categorias,
+      'marcas' => $marcas
     ]);
   }
 

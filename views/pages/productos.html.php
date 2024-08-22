@@ -7,8 +7,9 @@
       <label for="categoria" class="filter-label">Categoría</label>
       <select name="categoria" id="categoria" class="filter-select">
         <option value="">Todas</option>
-        <option value="1">Opción 1</option>
-        <option value="2">Opción 2</option>
+        <?php foreach($categorias as $categoria) : ?>
+          <option value="<?php echo $categoria->id ?>"><?php echo $categoria->categoria?></option>
+        <?php endforeach ?>
       </select>
     </div>
 
@@ -16,8 +17,9 @@
       <label for="marca" class="filter-label">Marca</label>
       <select name="marca" id="marca" class="filter-select">
         <option value="">Todas</option>
-        <option value="1">Opcion 1</option>
-        <option value="2">Opcion 2</option>
+        <?php foreach($marcas as $marca): ?>
+          <option value="<?php echo $marca->id; ?>"><?php echo $marca->marca; ?></option>
+        <?php endforeach; ?>
       </select>
     </div>
 
@@ -32,25 +34,34 @@
   </form>
 
   <div class="productos-grid">
+    <?php foreach($productos as $producto) : ?>
     <a href="#" class="producto-card">
       <div class="img-wrapper">
-        <img src="./views/assets/img/gamepadSinFondo.png" alt="gamepad">
+        <picture>
+          <source srcset="<?php echo IMAGENES_DIR . $producto->imagen ?>.webp" type="image/webp">
+          <img src="<?php echo IMAGENES_DIR . $producto->imagen ?>.webp" alt="Imagen del Producto" loading="lazy">
+        </picture>
       </div>
-      <span class="card-marca">Marca</span>
-      <span class="card-nombre">Nombre del producto</span>
-      <span class="card-descripcion">Descripcion</span>
-      <span class="card-precio">$200.00</span>
+      <span class="card-marca"><?php echo $producto->marca_nombre ?></span>
+      <span class="card-nombre"><?php echo $producto->nombre?> </span>
+      <span class="card-descripcion"><?php echo $producto->descripcion_corta?></span>
+      <span class="card-precio"><?php echo $producto->precio ?></span>
     </a>
-
-    <a href="#" class="producto-card">
-      <div class="img-wrapper">
-        <img src="./views/assets/img/gamepadSinFondo.png" alt="gamepad">
-      </div>
-      <span class="card-marca">Marca</span>
-      <span class="card-nombre">Nombre del producto</span>
-      <span class="card-descripcion">Descripcion</span>
-      <span class="card-precio">$200.00</span>
-    </a>
+    <?php endforeach ?>
   </div>
+
+  <div class="pagination">
+      <?php if ($paginaActual > 1): ?>
+          <a href="?pagina=<?php echo $paginaActual - 1; ?>">Anterior</a>
+      <?php endif; ?>
+      <?php for ($i = 1; $i <= $totalPaginas; $i++): ?>
+          <a href="?pagina=<?php echo $i; ?>" class="<?php echo $i === $paginaActual ? 'active' : ''; ?>">
+              <?php echo $i; ?>
+          </a>
+      <?php endfor; ?>
+      <?php if ($paginaActual < $totalPaginas): ?>
+          <a href="?pagina=<?php echo $paginaActual + 1; ?>">Siguiente</a>
+      <?php endif; ?>
+    </div>
 
 </section>
