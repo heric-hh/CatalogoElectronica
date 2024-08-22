@@ -25,7 +25,7 @@ class Producto extends ActiveRecord {
   public string $categoria_nombre;
   public string $marca_nombre;
   public string $precio;
-  public bool $disponible;
+  public string $disponible;
 
   public function __construct(array $args = []) {
     $this->id = isset($args["id"]) && !empty($args["id"]) ? (int)$args["id"] : null;
@@ -38,7 +38,7 @@ class Producto extends ActiveRecord {
     $this->categoria_nombre = $args["categoria_nombre"] ?? "";
     $this->marca_nombre = $args["marca_nombre"] ?? "";
     $this->precio = $args["precio"] ?? 0;
-    $this->disponible = $args["disponible"] ?? false;
+    $this->disponible = isset($args["disponible"]) ? (string)$args["disponible"] : "0";
   }
 
   public static function getErrores() : array {
@@ -67,7 +67,7 @@ class Producto extends ActiveRecord {
     if(!$this->precio) {
       self::$errores[] = "Debes añadir el precio del producto";
     }
-    if(!$this->disponible) {
+    if($this->disponible !== "0" && $this->disponible !== "1") {
       self::$errores[] = "Debes especificar la disponibilidad del producto"; 
     }
     return self::$errores;

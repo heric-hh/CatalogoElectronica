@@ -211,7 +211,7 @@ class NavBar extends HTMLElement {
         </h1>
         <ul class="navlink-lg">
           <li> <a href="#">Productos</a> </li>
-          <li> <a href="#">Contacto</a> </li>
+          <li> <a href="#contacto">Contacto</a> </li>
           <li> <a href="#">Nosotros</a> </li>
         </ul>
         <div class="button-wrapper">
@@ -224,7 +224,7 @@ class NavBar extends HTMLElement {
       <div class="submenu-wrapper">
         <div class="submenu">
           <a class="submenu-link" href="/productos">Productos</a>
-          <a href="#" class="submenu-link">Contacto</a>
+          <a href="#contacto" class="submenu-link">Contacto</a>
           <a href="/nosotros" class="submenu-link">Nosotros</a>
           <input class="submenu-input input-search" type="text" placeholder="¿Qué estás buscando?"/> 
         </div>

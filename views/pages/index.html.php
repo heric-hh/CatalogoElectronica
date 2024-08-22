@@ -6,7 +6,7 @@
       <p>Calidad, innovación y precios competitivos en un sólo lugar.</p>
     </div>
     <div class="hero-button">
-      <a href="/categorias" class="button button-secondary">Explorar Tienda</a>
+      <a href="/productos" class="button button-secondary">Explorar Tienda</a>
     </div>
     <div class="hero-speaker-container">
       <img src="./views/assets/img/bocina.png" alt="bocina">

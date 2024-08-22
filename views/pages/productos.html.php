@@ -41,7 +41,7 @@
 
   <div class="productos-grid">
     <?php foreach($productos as $producto) : ?>
-    <a href="#" class="producto-card">
+    <a href="/producto?id=<?php echo $producto->id?>" class="producto-card">
       <div class="img-wrapper">
         <picture>
           <source srcset="<?php echo IMAGENES_DIR . $producto->imagen ?>.webp" type="image/webp">

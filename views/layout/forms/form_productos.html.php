@@ -49,8 +49,7 @@
 <div class="label-input-wrapper">
   <label for="disponible" class="label">Disponible</label>
   <select name="producto[disponible]" id="disponible">
-    <option value="">Seleccionar</option>
-    <option value="1" <?php echo $producto->disponible ? 'selected' : ''; ?>>Disponible</option>
-    <option value="0" <?php echo !$producto->disponible ? 'selected' : ''; ?>>No disponible</option>
+    <option value="1" <?php echo $producto->disponible === '1' ? 'selected' : ''; ?>>Disponible</option>
+    <option value="0" <?php echo $producto->disponible === '0' ? 'selected' : ''; ?>>No disponible</option>
   </select>
 </div>

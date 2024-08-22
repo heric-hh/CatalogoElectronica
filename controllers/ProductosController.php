@@ -38,6 +38,16 @@ class ProductosController {
     ]);
   }
 
+  public static function showProductoEspecifico(Router $router) {
+    $id = $_GET["id"];
+    $producto = Producto::find($id);
+    
+    $router->render('producto_especifico', [
+      'title' => 'Producto - Catálogo De Productos',
+      'producto' => $producto
+    ]);
+  }
+
   //Administración de productos
 
   public static function showProductos(Router $router) : void {
@@ -136,10 +146,14 @@ class ProductosController {
   public static function guardarProducto(Router $router) : void {
     $args = $_POST["producto"];
     $producto = Producto::find($args["id"]);
+
+    $marcas = Marca::all("marca");
+    $categorias = Categoria::all("categoria");
+    
     $producto->sincronizar($args);
     $errores = $producto->validar();
     $nombreImagen = md5(uniqid( rand(), true));
-
+    
     if($_FILES["producto"]["tmp_name"]["imagen"]) {
       $manager = new ImageManager(new Driver());
       $image = $manager->read($_FILES["producto"]["tmp_name"]["imagen"]);
@@ -147,7 +161,7 @@ class ProductosController {
       $image->resize(height: 480);
       $producto->setImagen($nombreImagen);
     }
-
+    
     if(empty($errores)) {
       if($_FILES["producto"]["tmp_name"]["imagen"]) {
         $encoded = $image->toWebp();
@@ -155,7 +169,13 @@ class ProductosController {
       }
       $producto->actualizar();
     }
-    self::editarProducto($router);
+    $router->render('admin_editar_producto', [
+      'title' => 'Editar Producto - Catálogo De Productos',
+      'producto' => $producto,
+      'errores' => $errores,
+      'categorias' => $categorias,
+      'marcas' => $marcas
+    ]);
   }
 
   public static function eliminarProducto(Router $router) : void {

@@ -158,7 +158,12 @@ abstract class ActiveRecord {
     $stmt->bindParam(":id", $id, PDO::PARAM_INT);
     $stmt->execute();
     $registro = $stmt->fetch(PDO::FETCH_ASSOC);
-    return $registro ? static::crearObjeto($registro) : null;
+    
+    if($registro) {
+      $objeto = static::crearObjeto($registro);
+      return self::sanitizarObjeto($objeto);
+    }
+    return null;
   }
 
   public function crear() : void {
@@ -176,6 +181,7 @@ abstract class ActiveRecord {
 
   public function actualizar(): void {
     $atributos = $this->atributos();
+    // debug($atributos);
     $valores = array_map(fn($key) => "$key = :$key", array_keys($atributos));
     $query = "UPDATE " . static::$tabla . " SET ";
     $query .= join(', ', $valores);
@@ -235,6 +241,45 @@ abstract class ActiveRecord {
       }
     }
   }
+
+  protected static function sanitizarObjeto(object $objeto): object {
+    $objetoSanitizado = new static;
+
+    foreach (get_object_vars($objeto) as $key => $value) {
+        if (is_string($value)) {
+            $objetoSanitizado->$key = self::sanitizarString($value);
+        } elseif (is_array($value)) {
+            $objetoSanitizado->$key = self::sanitizarArray($value);
+        } elseif (is_object($value)) {
+            $objetoSanitizado->$key = self::sanitizarObjeto($value);
+        } else {
+            $objetoSanitizado->$key = $value;
+        }
+    }
+    return $objetoSanitizado;
+  }
+
+  protected static function sanitizarString(string $value): string {
+    return htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
+  }
+
+  protected static function sanitizarArray(array $array): array {
+    $arraySanitizado = [];
+
+    foreach ($array as $key => $value) {
+        if (is_string($value)) {
+            $arraySanitizado[$key] = self::sanitizarString($value);
+        } elseif (is_array($value)) {
+            $arraySanitizado[$key] = self::sanitizarArray($value);
+        } elseif (is_object($value)) {
+            $arraySanitizado[$key] = self::sanitizarObjeto($value);
+        } else {
+            $arraySanitizado[$key] = $value;
+        }
+    }
+
+    return $arraySanitizado;
+}
 
   public function setImagen(string $imagen): void {
     //Eliminar la imagen previa si ya existe un registro

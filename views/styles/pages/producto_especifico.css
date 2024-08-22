@@ -1,0 +1,16 @@
+.img-container {
+  padding: var(--spacing-lg);
+}
+
+.producto-detalles {
+  border-radius: var(--border-radius-inputs);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: var(--spacing-md) var(--spacing-lg);
+  background-color: var(--navbar-background-color);
+}
+
+.producto-detalles p, h2 {
+  margin: var(--spacing-sm) 0;
+}

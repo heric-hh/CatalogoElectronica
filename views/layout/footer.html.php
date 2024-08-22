@@ -1,5 +1,5 @@
 <div class="primary-linear-gradient">
-  <footer class="footer">
+  <footer class="footer" id="contacto">
     <div class="footer__title-wrapper">
       <p>¿Tienes alguna duda?</p>
       <p>¡Contáctanos!</p>

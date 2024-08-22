@@ -3,7 +3,7 @@
   if($resultado) {
     $mensaje = mostrarMensajes(intval($resultado));
     if($mensaje) { ?>
-      <p class="alerta exito"><?php echo sanitize($mensaje) ?></p>
+      <p class="alerta exito"><?php echo $mensaje ?></p>
     <?php }
   }
 ?>
