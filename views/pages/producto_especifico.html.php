@@ -14,5 +14,6 @@
     <p class="producto-categoria"><?php echo $producto->categoria_nombre ?></p>
     <p class="producto-disponibilidad"><?php echo $producto->disponible ? "Disponible" : "No Disponible" ?></p>
   </div>
+  <button onclick="history.back()" class="button button-secondary section-button">Volver</button>
 </section>
 

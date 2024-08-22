@@ -14,3 +14,7 @@
 .producto-detalles p, h2 {
   margin: var(--spacing-sm) 0;
 }
+
+.section-button {
+  margin: var(--spacing-md) 0;
+}

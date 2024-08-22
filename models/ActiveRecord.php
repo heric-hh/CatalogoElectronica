@@ -59,9 +59,7 @@ abstract class ActiveRecord {
 
   /**
    * Este método cuenta el número total de productos, opcionalmente filtrados por categoría y/o marca:
-   * Comienza con una consulta SQL base para contar todos los productos.
    * Si se proporciona una categoría o marca, añade las condiciones correspondientes a la consulta. 
-   * Prepara y ejecuta.
    * Devuelve el conteo total de productos que coinciden con los criterios.
    */
   public static function count(int $categoria = 0, int $marca = 0) : int {
@@ -93,10 +91,8 @@ abstract class ActiveRecord {
   /**
    * Este método recupera una lista paginada de productos, opcionalmente filtrados por categoría y/o marca:
    * Calcula el rango para la paginación.
-   * Construye una consulta SQL que selecciona todos los campos de productos, junto con los nombres de categoría, marca y precio.
    * Si se proporcionan filtros de categoría o marca, añade las condiciones correspondientes a la consulta.
    * Añade límites para la paginación (LIMIT y OFFSET).
-   * Prepara y ejecuta la consulta SQL de manera segura usando parámetros vinculados.
    * Devuelve los resultados como un array de objetos producto.
    */
 
@@ -154,6 +150,24 @@ abstract class ActiveRecord {
   public static function find(int $id) : ?self {
     $db = self::getDb();
     $query = "SELECT * FROM " . static::$tabla . " WHERE id = :id";
+    $stmt = $db->prepare($query);
+    $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+    $stmt->execute();
+    $registro = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+    if($registro) {
+      $objeto = static::crearObjeto($registro);
+      return self::sanitizarObjeto($objeto);
+    }
+    return null;
+  }
+
+  public static function findProducto(int $id) : ?self {
+    $db = self::getDb();
+    $query = "SELECT p.*, c.categoria AS categoria_nombre, m.marca AS marca_nombre FROM " . static::$tabla . " p
+      JOIN categorias c ON p.id_categoria = c.id
+      JOIN marcas m ON p.id_marca = m.id
+      WHERE p.id = :id";
     $stmt = $db->prepare($query);
     $stmt->bindParam(":id", $id, PDO::PARAM_INT);
     $stmt->execute();

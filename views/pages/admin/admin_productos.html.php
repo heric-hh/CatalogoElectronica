@@ -25,7 +25,7 @@
           <td data-label="Marca"><?php echo $producto->marca_nombre?></td>
           <td data-label="Descripción"><?php echo $producto->descripcion_corta?></td>
           <td data-label="Precio"><?php echo $producto->precio ?></td>
-          <td data-label="Disponible"><?php echo $producto->disponible ?></td>
+          <td data-label="Disponible"><?php echo $producto->disponible === "1" ? "Disponible" : "No Disponible" ?></td>
           <td data-label="Acciones">
             <form action="/admin/productos/eliminar" method="post">
               <input type="hidden" name="id" value="<?php echo $producto->id ?>">

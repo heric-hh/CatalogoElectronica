@@ -40,7 +40,7 @@ class ProductosController {
 
   public static function showProductoEspecifico(Router $router) {
     $id = $_GET["id"];
-    $producto = Producto::find($id);
+    $producto = Producto::findProducto($id);
     
     $router->render('producto_especifico', [
       'title' => 'Producto - Catálogo De Productos',
