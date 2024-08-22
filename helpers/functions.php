@@ -10,11 +10,6 @@ function debug(mixed $var) : never {
   exit;
 }
 
-function sanitize(string $html) : string {
-  $sanitized = htmlspecialchars($html);
-  return $sanitized;
-}
-
 function mostrarMensajes(int $codigo) : string {
   $mensaje = "";
   switch($codigo) {

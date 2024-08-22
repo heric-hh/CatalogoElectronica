@@ -57,12 +57,90 @@ abstract class ActiveRecord {
     return self::consultarSQL($stmt);
   }
 
-  public static function count() : int {
-    $query = "SELECT COUNT(*) as total FROM " . static::$tabla;
+  /**
+   * Este método cuenta el número total de productos, opcionalmente filtrados por categoría y/o marca:
+   * Comienza con una consulta SQL base para contar todos los productos.
+   * Si se proporciona una categoría o marca, añade las condiciones correspondientes a la consulta. 
+   * Prepara y ejecuta.
+   * Devuelve el conteo total de productos que coinciden con los criterios.
+   */
+  public static function count(int $categoria = 0, int $marca = 0) : int {
+    $query = "SELECT COUNT(*) as total FROM " . static::$tabla . " WHERE 1=1 ";
+    $params = [];
+
+    if($categoria > 0 ) {
+      $query .= " AND id_categoria = :categoria";
+      $params[":categoria"] = $categoria;
+    }
+
+    if($marca > 0) {
+      $query .= " AND id_marca = :marca";
+      $params[":marca"] = $marca;
+    }
+
     $db = self::getDb();
-    $stmt = $db->query($query);
+    $stmt = $db->prepare($query);
+
+    foreach ($params as $key => $value) {
+      $stmt->bindValue($key, $value, PDO::PARAM_INT);
+    }
+
+    $stmt->execute();
     $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
-    return $resultado["total"] ?? 0;
+    return (int)($resultado["total"] ?? 0);
+  }
+
+  /**
+   * Este método recupera una lista paginada de productos, opcionalmente filtrados por categoría y/o marca:
+   * Calcula el rango para la paginación.
+   * Construye una consulta SQL que selecciona todos los campos de productos, junto con los nombres de categoría, marca y precio.
+   * Si se proporcionan filtros de categoría o marca, añade las condiciones correspondientes a la consulta.
+   * Añade límites para la paginación (LIMIT y OFFSET).
+   * Prepara y ejecuta la consulta SQL de manera segura usando parámetros vinculados.
+   * Devuelve los resultados como un array de objetos producto.
+   */
+
+  public static function filtrarProductos(int $pagina, int $porPagina, int $categoria = 0, int $marca = 0, string $precioOrden = "") : array {
+    $rango = ($pagina - 1) * $porPagina;
+    $query = "
+        SELECT p.*, c.categoria AS categoria_nombre, m.marca AS marca_nombre 
+        FROM " . static::$tabla . " p
+        JOIN categorias c ON p.id_categoria = c.id
+        JOIN marcas m ON p.id_marca = m.id
+        WHERE 1=1";
+    $params = [];
+
+    $categoria = (int)$categoria;
+    $marca = (int)$marca;
+
+    if($categoria > 0) {
+      $query .= " AND p.id_categoria = :categoria";
+      $params[":categoria"] = $categoria;
+    }
+
+    if($marca > 0) {
+      $query .= " AND p.id_marca = :marca";
+      $params[":marca"] = $marca;
+    }
+
+    if($precioOrden === "asc" || $precioOrden === "desc") {
+      $query .= " ORDER BY p.precio " . ($precioOrden === "asc" ? "ASC" : "DESC");
+    }
+    
+    $query .= " LIMIT :porPagina OFFSET :rango";
+    $params[":porPagina"] = $porPagina;
+    $params[":rango"] = $rango;
+
+    $db = self::getDb();
+    $stmt = $db->prepare($query);
+
+    foreach ($params as $key => $value) {
+      $stmt->bindValue($key, $value, is_int($value) ? PDO::PARAM_INT : PDO::PARAM_STR);
+    }
+
+    $stmt->execute();
+    
+    return self::consultarSQL($stmt);
   }
 
   public static function get(int $cantidad) : array {

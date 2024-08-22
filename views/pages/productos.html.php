@@ -6,19 +6,25 @@
     <div class="filter-wrapper">
       <label for="categoria" class="filter-label">Categoría</label>
       <select name="categoria" id="categoria" class="filter-select">
-        <option value="">Todas</option>
-        <?php foreach($categorias as $categoria) : ?>
-          <option value="<?php echo $categoria->id ?>"><?php echo $categoria->categoria?></option>
-        <?php endforeach ?>
+        <option value="0">Todas</option>
+        <?php foreach($categorias as $categoria): ?>
+            <option value="<?php echo htmlspecialchars((string)$categoria->id); ?>" 
+                <?php echo (int)($_GET['categoria'] ?? 0) === $categoria->id ? 'selected' : ''; ?>>
+                <?php echo htmlspecialchars($categoria->categoria); ?>
+            </option>
+        <?php endforeach; ?>
       </select>
     </div>
 
     <div class="filter-wrapper">
       <label for="marca" class="filter-label">Marca</label>
       <select name="marca" id="marca" class="filter-select">
-        <option value="">Todas</option>
+        <option value="0">Todas</option>
         <?php foreach($marcas as $marca): ?>
-          <option value="<?php echo $marca->id; ?>"><?php echo $marca->marca; ?></option>
+            <option value="<?php echo htmlspecialchars((string)$marca->id); ?>" 
+              <?php echo (int)($_GET['marca'] ?? 0) === $marca->id ? 'selected' : ''; ?>>
+              <?php echo htmlspecialchars($marca->marca); ?>
+            </option>
         <?php endforeach; ?>
       </select>
     </div>
@@ -27,8 +33,8 @@
       <label for="precio-orden" class="filter-label">Precio</label>
       <select name="precio-orden" id="precio-orden" class="filter-select">
         <option value="">Seleccionar</option>
-        <option value="asc">Menor A Mayor</option>
-        <option value="desc">Mayor A Menor</option>
+        <option value="asc" <?php echo $precioOrden === "asc" ? "selected" : "" ?>> Menor a Mayor</option>
+        <option value="desc" <?php echo $precioOrden === "desc" ? "selected" : "" ?>> Mayor a Menor</option>
       </select>
     </div>
   </form>

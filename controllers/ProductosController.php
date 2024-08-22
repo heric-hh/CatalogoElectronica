@@ -11,11 +11,16 @@ use Intervention\Image\Drivers\Gd\Driver;
 
 class ProductosController {
   public static function showIndex(Router $router) : void {
-    $paginaActual = $_GET['pagina'] ?? 1;
+    $paginaActual = isset($_GET['pagina']) ? (int)$_GET["pagina"] : 1;
     $productosPorPagina = 20;
-    $totalProductos = Producto::count();
-    $totalPaginas = ceil($totalProductos/$productosPorPagina);
-    $productos = Producto::allProductos($paginaActual, $productosPorPagina);
+
+    $categoriaFiltro = isset($_GET["categoria"]) ? (int)$_GET["categoria"] : 0;
+    $marcaFiltro = isset($_GET["marca"]) ? (int)$_GET["marca"] : 0;
+    $precioOrden = isset($_GET["precio-orden"]) ? $_GET["precio-orden"] : "";
+
+    $totalProductos = Producto::count($categoriaFiltro, $marcaFiltro);
+    $totalPaginas = (int)ceil($totalProductos/$productosPorPagina);
+    $productos = Producto::filtrarProductos($paginaActual, $productosPorPagina, $categoriaFiltro, $marcaFiltro, $precioOrden);
     $productosSanitizados = self::sanitize($productos);
     $categorias = Categoria::all("categoria");
     $marcas = Marca::all("marca");
@@ -28,7 +33,8 @@ class ProductosController {
       'paginaActual' => $paginaActual,
       'totalPaginas' => $totalPaginas,
       'categorias' => $categorias,
-      'marcas' => $marcas
+      'marcas' => $marcas,
+      'precioOrden' => $precioOrden
     ]);
   }
 
