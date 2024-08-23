@@ -21,13 +21,16 @@
     <p>Descubre lo nuevo en tecnología que está marcando tendencia.</p>
   </div>
   
-  <div class="pn__card-wrapper">
-    <div class="pn__card-gradient-bg">
-      <div class="pn__card-title-wrapper">
-        <p class="pn__card-title">Control Inalámbrico</p>
+  <!-- Producto Popular -->
+  <div class="pp__cards-wrapper">
+    <div class="pp__card">
+      <img src="./views/assets/img/gamepadSinFondo.png" alt="gamepad">
+      <span class="product__title">Control Inalámbrico</span>
+      <span class="product-price">$200.00</span>
+      <div class="pp__card-button-wrapper">
+        <a href="#" class="pp__card-button button">Ver Producto</a>
       </div>
     </div>
-    <img src="./views/assets/img/gamepadSinFondo.png" alt="gamepad">
   </div>
 
   <div class="pn_button-wrapper">

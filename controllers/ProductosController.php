@@ -8,6 +8,7 @@ use Models\Producto;
 use MVC\Router;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
+use Models\ConsultaProducto;
 
 class ProductosController {
   public static function showIndex(Router $router) : void {
@@ -42,6 +43,10 @@ class ProductosController {
     $id = $_GET["id"];
     $producto = Producto::findProducto($id);
     
+    if($producto) {
+      self::almacenarConsulta($producto);
+    }
+
     $router->render('producto_especifico', [
       'title' => 'Producto - Catálogo De Productos',
       'producto' => $producto
@@ -204,5 +209,26 @@ class ProductosController {
           return is_string($item) ? htmlspecialchars($item, ENT_QUOTES, 'UTF-8') : $item;
       }
     }, $data);
+  }
+
+  private static function almacenarConsulta(Producto $producto) : void {
+    $fecha_actual = date('Y-m-d H:i:s');
+        
+    $consulta_existente = ConsultaProducto::findByProductoId($producto->id);
+    
+    if ($consulta_existente instanceof ConsultaProducto) {
+      $consulta_existente->fecha_ultima_consulta = $fecha_actual;
+      $consulta_existente->num_consultas++;
+      $consulta_existente->update();
+    } else {
+      $nueva_consulta = new ConsultaProducto();
+      $nueva_consulta->id_producto = $producto->id;
+      $nueva_consulta->id_categoria = $producto->id_categoria;
+      $nueva_consulta->id_marca = $producto->id_marca;
+      $nueva_consulta->fecha_consulta = $fecha_actual;
+      $nueva_consulta->fecha_ultima_consulta = $fecha_actual;
+      $nueva_consulta->num_consultas = 1;
+      $nueva_consulta->save();
+  }
   }
 }

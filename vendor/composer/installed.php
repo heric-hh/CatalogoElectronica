@@ -3,7 +3,7 @@
         'name' => 'hereric/catalogo',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '36b17121a227e743d9bd437b5aed0b11a1ac35db',
+        'reference' => '0ff707ba1c1a1007f394aacf5e37149560cccd93',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         'hereric/catalogo' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '36b17121a227e743d9bd437b5aed0b11a1ac35db',
+            'reference' => '0ff707ba1c1a1007f394aacf5e37149560cccd93',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
