@@ -180,6 +180,17 @@ abstract class ActiveRecord {
     return null;
   }
 
+  public static function buscarProductos(string $termino, int $limite = 5) : array {
+    $query = "SELECT id, nombre, precio, imagen FROM " . static::$tabla . " WHERE nombre LIKE :termino LIMIT :limite";
+    $db = static::getDb();
+    $stmt = $db->prepare($query);
+    $terminoBusqueda = "%" . $termino . "%";
+    $stmt->bindParam(":termino", $terminoBusqueda, PDO::PARAM_STR);
+    $stmt->bindParam(":limite", $limite, PDO::PARAM_INT);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+  }
+
   public function crear() : void {
     $db = self::getDb();
     $atributos = self::atributos();

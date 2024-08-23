@@ -7,7 +7,9 @@ use Controllers\ProductosController;
 use Controllers\LoginController;
 use Controllers\AdminController;
 use Controllers\MarcasController;
+use Controllers\APIController;
 use Middleware\AuthMiddleware;
+
 use MVC\Router;
 
 $router = new Router();
@@ -17,7 +19,6 @@ $router->get('/categorias', [CategoriasController::class, 'showIndex']);
 $router->get('/productos', [ProductosController::class, 'showIndex']);
 $router->get('/producto', [ProductosController::class, 'showProductoEspecifico']);
 $router->get('/nosotros', [PagesController::class, 'showNosotros']);
-
 
 //Login
 $router->get('/login', [LoginController::class, 'showLogin']);
@@ -53,5 +54,8 @@ $router->get('/admin/marcas/editar', [MarcasController::class, 'editarMarca'], [
 $router->post('/admin/marcas/crear', [MarcasController::class, 'crearMarca'], [AuthMiddleware::class, 'verificarAutenticacion']);
 $router->post('/admin/marcas/editar', [MarcasController::class, 'editarMarca'], [AuthMiddleware::class, 'verificarAutenticacion']);
 $router->post('/admin/marcas/eliminar', [MarcasController::class, 'eliminarMarca'], [AuthMiddleware::class, 'verificarAutenticacion']);
+
+//API
+$router->get('/api/productos', [APIController::class, 'getProductos']);
 
 $router->checkRoutes();
