@@ -11,10 +11,32 @@
   background-color: var(--navbar-background-color);
 }
 
+.producto-detalles p {
+  font-size: var(--font-size-base);
+  margin-bottom: var(--spacing-md);
+}
+
 .producto-detalles p, h2 {
-  margin: var(--spacing-sm) 0;
+  margin: var(--spacing-sm) 0 var(--spacing-lg) 0;
 }
 
 .section-button {
   margin: var(--spacing-md) 0;
+}
+
+.span-producto-especifico {
+  font-size: var(--font-size-small);
+  font-weight: 300;
+}
+
+@media (min-width: 1024px) {
+
+  .title-producto-especifico{
+    margin-bottom: 4rem;
+  }
+
+  .flex-producto-especifico {
+    display: flex;
+    gap: var(--spacing-lg);
+  }
 }

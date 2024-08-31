@@ -73,3 +73,9 @@ select {
 select {
   padding: var(--spacing-sm);
 }
+
+@media (min-width: 1024px) {
+  .subtitle {
+    margin-bottom: var(--spacing-md);
+  }
+}

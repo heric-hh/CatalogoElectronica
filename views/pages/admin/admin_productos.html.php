@@ -26,12 +26,12 @@
           <td data-label="Descripción"><?php echo $producto->descripcion_corta?></td>
           <td data-label="Precio"><?php echo $producto->precio ?></td>
           <td data-label="Disponible"><?php echo $producto->disponible === "1" ? "Disponible" : "No Disponible" ?></td>
-          <td data-label="Acciones">
+          <td data-label="Acciones" class="form-actions">
             <form action="/admin/productos/eliminar" method="post">
               <input type="hidden" name="id" value="<?php echo $producto->id ?>">
-              <input type="submit" value="Eliminar" class="button">
+              <input type="submit" value="Eliminar" class="button button-alerta">
             </form>
-            <a href="/admin/productos/editar?id=<?php echo $producto->id?>" class="button">
+            <a href="/admin/productos/editar?id=<?php echo $producto->id?>" class="button button-editar">
               Editar
             </a>
           </td>

@@ -15,6 +15,11 @@
   border-bottom: 1px solid #ddd;
 }
 
+.form-actions {
+  display: flex;
+  gap: var(--spacing-sm);
+}
+
 /* Estilos para pantallas pequeñas */
 @media screen and (max-width: 600px) {
   .table thead {
@@ -66,11 +71,6 @@
   border: 1px solid #ddd;
   border-radius: 5px;
   transition: background-color 0.3s, color 0.3s;
-}
-
-.pagination a:hover {
-  background-color: var(--color-primary);
-  color: #fff;
 }
 
 .pagination a.active {

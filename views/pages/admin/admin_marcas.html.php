@@ -14,12 +14,12 @@
         <?php foreach($marcas as $marca) : ?>
         <tr>
           <td data-label="Marca"><?php echo $marca->marca?></td>
-          <td data-label="Acciones">
+          <td data-label="Acciones" class="form-actions">
             <form action="/admin/marcas/eliminar" method="post">
               <input type="hidden" name="id" value="<?php echo $marca->id ?>">
-              <input type="submit" value="Eliminar" class="button">
+              <input type="submit" value="Eliminar" class="button button-alerta">
             </form>
-            <a href="/admin/marcas/editar?id=<?php echo $marca->id ?>" class="button">
+            <a href="/admin/marcas/editar?id=<?php echo $marca->id ?>" class="button button-editar">
               Editar
             </a>
           </td>

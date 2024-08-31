@@ -5,3 +5,9 @@ textarea, .input {
   font-weight: 300;
   padding: var(--spacing-md) var(--spacing-sm);
 }
+
+@media (min-width: 1024px) {
+  .input {
+    padding: 1rem 2rem;
+  }
+}

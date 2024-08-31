@@ -1,7 +1,8 @@
+<div class="gradient-background"></div>
+<div class="blur-overlay"></div>
 <section id="productos" class="section">
   <h3 class="title">Productos</h3>
   <p class="subtitle">Lo mejor en electrónica: Productos para cada entusiasta.</p>
-  <!-- Añadir funcionalidad de filtro -->
   <form action="" id="filters-form" method="GET">
     <div class="filter-wrapper">
       <label for="categoria" class="filter-label">Categoría</label>
@@ -48,10 +49,12 @@
           <img src="<?php echo IMAGENES_DIR . $producto->imagen ?>.webp" alt="Imagen del Producto" loading="lazy">
         </picture>
       </div>
-      <span class="card-marca"><?php echo $producto->marca_nombre ?></span>
-      <span class="card-nombre"><?php echo $producto->nombre?> </span>
-      <span class="card-descripcion"><?php echo $producto->descripcion_corta?></span>
-      <span class="card-precio"><?php echo $producto->precio ?></span>
+      <div class="details-wrapper">
+        <span class="card-marca"><?php echo $producto->marca_nombre ?></span>
+        <span class="card-nombre"><?php echo $producto->nombre?> </span>
+        <span class="card-descripcion"><?php echo $producto->descripcion_corta?></span>
+        <span class="card-precio"><?php echo $producto->precio ?></span>
+      </div>
     </a>
     <?php endforeach ?>
   </div>
@@ -69,5 +72,4 @@
           <a href="?pagina=<?php echo $paginaActual + 1; ?>">Siguiente</a>
       <?php endif; ?>
     </div>
-
 </section>
