@@ -211,6 +211,8 @@ class ProductosController {
     }, $data);
   }
 
+  /** Almacenar las consultas para estadísticas de producto */
+
   private static function almacenarConsulta(Producto $producto) : void {
     $fecha_actual = date('Y-m-d H:i:s');
         
@@ -230,5 +232,5 @@ class ProductosController {
       $nueva_consulta->veces_consultado = 1;
       $nueva_consulta->save();
     }
-  }
+  }  
 }

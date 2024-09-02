@@ -138,6 +138,7 @@
   border-radius: 8px;
   padding: 20px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  padding-bottom: var(--spacing-md);
 }
 
 .column-3 .box {
@@ -147,5 +148,24 @@
 @media (max-width: 768px) {
   .grid-container {
       grid-template-columns: 1fr;
+  }
+}
+
+.detalles-producto {
+  display: flex;
+  align-items: center;
+  padding: 0 var(--spacing-sm);
+}
+
+.pmv-img-wrapper {
+  width: 50%;
+}
+
+.pmv-detalles {
+  font-size: var(--font-size-medium);
+
+  .vistas {
+    font-weight: 300;
+    color: rgb(2, 236, 2);
   }
 }

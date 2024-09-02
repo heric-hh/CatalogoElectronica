@@ -11,6 +11,11 @@ class ConsultaProducto extends ActiveRecord {
   public int $id_marca;
   public string $fecha_consulta;
   public int $veces_consultado;
+  public ?string $nombre;
+  public ?string $descripcion_corta;
+  public ?string $precio;
+  public ?string $imagen;
+  public ?string $total_consultas;
 
   public function __construct() {}
 
@@ -58,5 +63,29 @@ class ConsultaProducto extends ActiveRecord {
     $stmt->bindParam(':veces_consultado', $this->veces_consultado, PDO::PARAM_INT);
     $stmt->bindParam(':id', $this->id, PDO::PARAM_INT);
     $stmt->execute();
+  }
+
+  public static function getProductoMasVisto() : ?self {
+    $db = ActiveRecord::getDb();
+    $query = "SELECT p.id, p.nombre, p.descripcion_corta, p.precio, p.imagen, SUM(cp.veces_consultado) AS total_consultas
+      FROM consultas_productos cp
+      JOIN productos p ON cp.id_producto = p.id
+      GROUP BY cp.id_producto
+      ORDER BY total_consultas DESC
+      LIMIT 1";
+    $stmt = $db->prepare($query);
+    $stmt->execute();
+    $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
+    if($resultado) {
+      $pmv = new self();
+      $pmv->id = $resultado["id"];
+      $pmv->nombre = $resultado["nombre"];
+      $pmv->descripcion_corta = $resultado["descripcion_corta"];
+      $pmv->precio = $resultado["precio"];
+      $pmv->imagen = $resultado["imagen"];
+      $pmv->total_consultas = $resultado["total_consultas"];
+      return $pmv;
+    }
+    return null;
   }
 }

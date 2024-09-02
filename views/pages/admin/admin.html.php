@@ -11,7 +11,16 @@
   <div class="column column-1">
     <div class="box">
         <h2>Producto Más Visto</h2>
-        <p>Este es el primer contenedor de la columna 1.</p>
+        <div class="detalles-producto">
+          <div class="pmv-img-wrapper">
+            <img src="<?php echo IMAGENES_DIR . $productoMasVisto->imagen?>.webp" alt="producto_mas_visto">
+          </div>
+          <div class="pmv-detalles">
+            <p><?php echo $productoMasVisto->nombre?></p>
+            <p>$ <?php echo $productoMasVisto->precio?></p>
+            <p class="vistas">Vistas: <?php echo $productoMasVisto->total_consultas ?></p>
+          </div>
+        </div>
     </div>
     <div class="box">
         <h2>Producto Más Solicitado</h2>
