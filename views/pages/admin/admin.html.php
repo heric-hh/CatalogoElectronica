@@ -30,17 +30,53 @@
 <div class="column column-2">
     <div class="box">
         <h2>Categorías Mas Visitadas</h2>
-        <p>Este es el primer contenedor de la columna 2.</p>
+        <div class="lista-wrapper">
+        <ul class="dashboard-lista">
+          <?php foreach ($categoriasMasVistas as $index => $categoria): ?>
+            <li class="dashboard-item <?php echo $index < 3 ? ['gold', 'silver', 'bronze'][$index] : 'other'; ?>">
+                <span class="dashboard-medalla">
+                    <?php echo $index < 3 ? ['🥇', '🥈', '🥉'][$index] : '🏅'; ?>
+                </span>
+                <span class="lista-nombre"><?php echo htmlspecialchars($categoria->categoria); ?></span>
+                <span class="lista-vistas">(<?php echo number_format($categoria->total_consultas); ?> visitas)</span>
+            </li>
+          <?php endforeach; ?>
+        </ul>
+        </div>
     </div>
     <div class="box">
         <h2>Marcas Más Visitadas</h2>
-        <p>Este es el segundo contenedor de la columna 2.</p>
+        <div class="lista-wrapper">
+        <ul class="dashboard-lista">
+          <?php foreach ($marcasMasVistas as $index => $marca): ?>
+            <li class="dashboard-item <?php echo $index < 3 ? ['gold', 'silver', 'bronze'][$index] : 'other'; ?>">
+                <span class="dashboard-medalla">
+                    <?php echo $index < 3 ? ['🥇', '🥈', '🥉'][$index] : '🏅'; ?>
+                </span>
+                <span class="lista-nombre"><?php echo htmlspecialchars($marca->marca); ?></span>
+                <span class="lista-vistas">(<?php echo number_format($marca->total_consultas); ?> visitas)</span>
+            </li>
+          <?php endforeach; ?>
+        </ul>
+        </div>
     </div>
 </div>
 <div class="column column-3">
     <div class="box">
         <h2>Productos Más Visitados</h2>
-        <p>Este es el único contenedor de la columna 3, que ocupa todo el espacio vertical.</p>
+        <div class="lista-wrapper">
+        <ul class="dashboard-lista">
+          <?php foreach ($productosMasVistos as $index => $producto): ?>
+            <li class="dashboard-item <?php echo $index < 3 ? ['gold', 'silver', 'bronze'][$index] : 'other'; ?>">
+                <span class="dashboard-medalla">
+                    <?php echo $index < 3 ? ['🥇', '🥈', '🥉'][$index] : '🏅'; ?>
+                </span>
+                <span class="lista-nombre"><?php echo htmlspecialchars($producto->nombre); ?></span>
+                <span class="lista-vistas">(<?php echo number_format($producto->veces_consultado); ?> visitas)</span>
+            </li>
+          <?php endforeach; ?>
+        </ul>
+        </div>
     </div>
 </div>
 </div>

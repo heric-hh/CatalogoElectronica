@@ -9,6 +9,7 @@
   align-items: flex-start;
   padding: var(--spacing-md) var(--spacing-lg);
   background-color: var(--navbar-background-color);
+  width: 50%;
 }
 
 .producto-detalles p {

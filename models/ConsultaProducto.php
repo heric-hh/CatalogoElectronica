@@ -16,6 +16,8 @@ class ConsultaProducto extends ActiveRecord {
   public ?string $precio;
   public ?string $imagen;
   public ?string $total_consultas;
+  public ?string $categoria;
+  public ?string $marca;
 
   public function __construct() {}
 
@@ -66,7 +68,7 @@ class ConsultaProducto extends ActiveRecord {
   }
 
   public static function getProductoMasVisto() : ?self {
-    $db = ActiveRecord::getDb();
+    $db = self::getDb();
     $query = "SELECT p.id, p.nombre, p.descripcion_corta, p.precio, p.imagen, SUM(cp.veces_consultado) AS total_consultas
       FROM consultas_productos cp
       JOIN productos p ON cp.id_producto = p.id
@@ -88,4 +90,42 @@ class ConsultaProducto extends ActiveRecord {
     }
     return null;
   }
+
+  public static function getCategoriasMasVistas() : array {
+    $db = self::getDb();
+    $query = "SELECT c.categoria, SUM(cp.veces_consultado) AS total_consultas
+      FROM consultas_productos cp
+      JOIN categorias c ON cp.id_categoria = c.id
+      GROUP BY cp.id_categoria
+      ORDER BY total_consultas DESC
+      LIMIT 4";
+    $stmt = $db->prepare($query);
+    $stmt->execute();
+    return self::consultarSQL($stmt);
+  }
+
+  public static function getMarcasMasVistas() : array {
+    $db = self::getDb();
+    $query = "SELECT m.marca, SUM(cp.veces_consultado) AS total_consultas
+      FROM consultas_productos cp
+      JOIN marcas m ON cp.id_marca = m.id
+      GROUP BY cp.id_marca
+      ORDER BY total_consultas DESC
+      LIMIT 5";
+    $stmt = $db->prepare($query);
+    $stmt->execute();
+    return self::consultarSQL($stmt);
+  }
+
+  public static function getProductosMasVistos() : array {
+    $db = self::getDb();
+    $query = "SELECT p.nombre, cp.veces_consultado FROM consultas_productos cp
+      JOIN productos p ON cp.id_producto = p.id
+      ORDER BY cp.veces_consultado DESC
+      LIMIT 10";
+    $stmt = $db->prepare($query);
+    $stmt->execute();
+    return self::consultarSQL($stmt);
+  }
+
 }
