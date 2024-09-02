@@ -217,8 +217,8 @@ class ProductosController {
     $consulta_existente = ConsultaProducto::findByProductoId($producto->id);
     
     if ($consulta_existente instanceof ConsultaProducto) {
-      $consulta_existente->fecha_ultima_consulta = $fecha_actual;
-      $consulta_existente->num_consultas++;
+      $consulta_existente->fecha_consulta = $fecha_actual;
+      $consulta_existente->veces_consultado++;
       $consulta_existente->update();
     } else {
       $nueva_consulta = new ConsultaProducto();
@@ -226,9 +226,9 @@ class ProductosController {
       $nueva_consulta->id_categoria = $producto->id_categoria;
       $nueva_consulta->id_marca = $producto->id_marca;
       $nueva_consulta->fecha_consulta = $fecha_actual;
-      $nueva_consulta->fecha_ultima_consulta = $fecha_actual;
-      $nueva_consulta->num_consultas = 1;
+      $nueva_consulta->fecha_consulta = $fecha_actual;
+      $nueva_consulta->veces_consultado = 1;
       $nueva_consulta->save();
-  }
+    }
   }
 }

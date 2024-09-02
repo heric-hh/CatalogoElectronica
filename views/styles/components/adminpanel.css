@@ -16,7 +16,6 @@
   height: 10vh;
   border: 1px solid var(--navbar-background-color);
   background-color: var(--navbar-background-color);
-  /* padding: var(--spacing-lg) 0; */
 }
 
 .admin-panel__link {
@@ -34,6 +33,11 @@
 } 
 
 .admin-panel__opt-title {
+  max-width: 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
   font-weight: 300;
   font-size: var(--font-size-small);
 }
